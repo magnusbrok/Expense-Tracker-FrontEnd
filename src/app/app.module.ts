@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { BudgetComponent } from './budget/budget.component';
 import { ExpensesComponent } from './expenses/expenses.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { ExpensesComponent } from './expenses/expenses.component';
     HeaderComponent,
     WelcomePageComponent,
     BudgetComponent,
-    ExpensesComponent
+    ExpensesComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule
