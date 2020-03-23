@@ -1,29 +1,32 @@
 <div class="card card-login"> <!-- TODO center vertically -->
   <div class="card-header"> My Expense Tracker</div>
   <div class="card-body">
-    <form> <!-- TODO horizontally in card-body -->
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm"> <!-- TODO horizontally in card-body -->
       <!-- Username Input-->
       <div class="row form-group">
         <input
           type="text"
+          name="username"
+          ngModel
           placeholder="Username">
       </div>
       <!-- Password input-->
       <div class="row form-group">
         <input
           type="text"
+          name="password"
+          ngModel
           placeholder="Password">
       </div>
       <div class="row">
         <span class="help-block">Forgot your password?</span>
       </div>
+      <!-- Button -->
+      <button
+        class="btn btn-success"
+        type="submit"
+      >Login</button>
     </form>
-    <!-- Button -->
-    <div class="form-group">
-      <div class="col-md-4">
-        <button class="btn btn-success">Login</button>
-      </div>
-    </div>
   </div>
   <div class="card-footer"> Register new user</div>
 </div>

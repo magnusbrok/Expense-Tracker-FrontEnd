@@ -9,6 +9,7 @@ import { ExpensesComponent } from './expenses/expenses.component';
 import { HistoryComponent } from './history/history.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import {AppRoutingModule} from './app-routing.module';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {AppRoutingModule} from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
