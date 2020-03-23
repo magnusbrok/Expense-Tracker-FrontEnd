@@ -9,6 +9,7 @@ import { ExpensesComponent } from './expenses/expenses.component';
 import { HistoryComponent } from './history/history.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import {AppRoutingModule} from './app-routing.module';
+import { ExpenseEditComponent } from './expenses/expense-edit/expense-edit.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {AppRoutingModule} from './app-routing.module';
     BudgetComponent,
     ExpensesComponent,
     HistoryComponent,
-    HomePageComponent
+    HomePageComponent,
+    ExpenseEditComponent
   ],
   imports: [
     BrowserModule,
