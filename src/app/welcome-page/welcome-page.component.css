@@ -2,5 +2,8 @@
   max-width: 400px;
   margin: auto;
   text-align: center;
+}
 
+.btn-success{
+  margin-top: 20px;
 }
