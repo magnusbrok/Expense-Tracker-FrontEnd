@@ -1,9 +1,9 @@
 <div class="card card-login"> <!-- TODO center vertically -->
   <div class="card-header"> My Expense Tracker</div>
   <div class="card-body">
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm"> <!-- TODO horizontally in card-body -->
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
       <!-- Username Input-->
-      <div class="row form-group">
+      <div class="row form-group justify-content-center">
         <input
           type="text"
           name="username"
@@ -11,14 +11,14 @@
           placeholder="Username">
       </div>
       <!-- Password input-->
-      <div class="row form-group">
+      <div class="row form-group justify-content-center">
         <input
           type="text"
           name="password"
           ngModel
           placeholder="Password">
       </div>
-      <div class="row">
+      <div class="row justify-content-center">
         <span class="help-block">Forgot your password?</span>
       </div>
       <!-- Button -->
