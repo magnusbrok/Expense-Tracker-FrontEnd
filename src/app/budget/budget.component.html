@@ -1,25 +1,33 @@
-<div class="col-xs-12">
-  <p>Indtast dit budget!</p>
-  <input placeholder="Ex. 4000 kr.">
-  <span style="padding-left: 15px;"></span>
-  <button class=" btn-primary">Tilføj dit budget!</button>
-</div>
-
-<div class="col-xs-12" >
-  <p>Indtast et budget til hver kategori!</p>
-  <input placeholder="Ex. fastfood!">
-  <span style="padding-left: 15px;"></span>
-  <div class="btn-group"
-       appDropDownMenu>
-    <button type="button"
-            class="btn-primary dropdown-toggle">
-      Tilføj dine kategorier!<span class="caret"></span>
-  </button>
-    <ul class="dropdown-menu">
-      <li><a style="cursor: pointer"href="#">Fødevarer</a></li>
-      <li><a href="#">Faste regninger</a></li>
-      <li><a href="#">Hygge</a></li>
-      <li><a href="#">Andet</a></li>
-    </ul>
+<div class="form-group">
+  <label class="col-md-12"></label>
+  <div class="col-md-4">
+    <p>Indtast dit budget!</p>
+    <div class="input-group">
+      <input class="form-control" placeholder="placeholder" type="text">
+      <div class="input-group-btn" >
+        <button  class="btn btn-default" type="button">
+          TIlføj!
+        </button>
+      </div>
+    </div>
+  </div>
+  <label class="col-md-12"></label>
+  <div class="col-md-4">
+    <p>Indtast et budget til hver kategori!</p>
+    <div class="input-group">
+      <div class="input-group-btn" appDropDownMenu>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" >
+          Vælg kategori
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu form-control-static">
+          <li><a style="cursor: pointer"href="#">Fødevarer</a></li>
+          <li><a href="#">Faste regninger</a></li>
+          <li><a href="#">Hygge</a></li>
+          <li><a href="#">Andet</a></li>
+        </ul>
+      </div>
+      <input class="form-control" placeholder="Indtast et budget" type="text">
+    </div>
   </div>
 </div>
