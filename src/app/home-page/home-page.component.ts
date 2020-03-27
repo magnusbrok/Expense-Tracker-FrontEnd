@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import * as CanvasJS from './canvasjs.min';
-// var CanvasJS = require('./canvasjs.min');
 
 // TODO: make dates dynamic
 // TODO: get categories from method get category (or something alike)
