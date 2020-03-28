@@ -8,7 +8,6 @@ import { BudgetComponent } from './budget/budget.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { HistoryComponent } from './history/history.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import {DropdownDirective} from './budget/shared/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -18,8 +17,7 @@ import {DropdownDirective} from './budget/shared/dropdown.directive';
     BudgetComponent,
     ExpensesComponent,
     HistoryComponent,
-    HomePageComponent,
-    DropdownDirective
+    HomePageComponent
   ],
   imports: [
     BrowserModule
