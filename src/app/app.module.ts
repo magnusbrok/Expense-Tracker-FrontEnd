@@ -10,7 +10,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import {AppRoutingModule} from './app-routing.module';
 import { ExpenseEditComponent } from './expenses/expense-edit/expense-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
-import {HistoryComponent} from './history/history-list/history-list.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [

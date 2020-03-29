@@ -1,8 +1,15 @@
-<div class="row">
-  <div class="col-md-5">
-    <app-history-list></app-history-list>
-  </div>
-  <div class="col-md-7">
-    <app-history-detail></app-history-detail>
-  </div>
-</div>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">Amount</th>
+    <th scope="col">Category</th>
+    <th scope="col">Date</th>
+    <th scope="col">Note</th>
+  </tr>
+  </thead>
+  <tbody>
+  <td *ngFor="let history of histories">
+    {{history.month}}
+  </td>
+  </tbody>
+</table>

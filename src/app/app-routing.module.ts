@@ -5,7 +5,7 @@ import {BudgetComponent} from './budget/budget.component';
 import {ExpensesComponent} from './expenses/expenses.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {WelcomePageComponent} from './welcome-page/welcome-page.component';
-import { HistoryComponent } from './history/history-list/history-list.component';
+import { HistoryComponent } from './history/history.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/home-page', pathMatch: 'full'},
