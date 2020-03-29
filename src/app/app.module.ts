@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
 import { BudgetComponent } from './budget/budget.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { HistoryComponent } from './history/history.component';
@@ -16,7 +16,7 @@ import {FormsModule} from "@angular/forms";
   declarations: [
     AppComponent,
     HeaderComponent,
-    WelcomePageComponent,
+    AuthenticationComponent,
     BudgetComponent,
     ExpensesComponent,
     HistoryComponent,
