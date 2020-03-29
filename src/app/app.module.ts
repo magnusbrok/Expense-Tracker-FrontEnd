@@ -6,10 +6,11 @@ import { HeaderComponent } from './header/header.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { BudgetComponent } from './budget/budget.component';
 import { ExpensesComponent } from './expenses/expenses.component';
-import { HistoryComponent } from './history/history.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import {AppRoutingModule} from './app-routing.module';
 import { ExpenseEditComponent } from './expenses/expense-edit/expense-edit.component';
+import { DropdownDirective } from './shared/dropdown.directive';
+import {HistoryComponent} from './history/history-list/history-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ExpenseEditComponent } from './expenses/expense-edit/expense-edit.compo
     ExpensesComponent,
     HistoryComponent,
     HomePageComponent,
-    ExpenseEditComponent
+    ExpenseEditComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
