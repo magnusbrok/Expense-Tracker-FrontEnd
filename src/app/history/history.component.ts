@@ -14,10 +14,8 @@ export class HistoryComponent implements OnInit {
     new History('April', 39000, 41000, -2000)
   ];
 
-
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }
