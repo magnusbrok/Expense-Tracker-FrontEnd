@@ -10,7 +10,7 @@
     <div class="input-group">
       <input class="form-control" placeholder="placeholder" type="text">
       <div class="input-group-btn" >
-        <button class="btn btn-default" type="button">
+        <button (click)="buttonEnabled()" class="btn btn-default" type="button">
           Tilføj!
         </button>
       </div>
@@ -21,7 +21,7 @@
     <p>Indtast et budget til hver kategori!</p>
     <div class="input-group">
       <div class="input-group-btn" appDropDownMenu>
-        <button type="button" class="btn btn-default dropdown-toggle"  >
+        <button [disabled]="buttonDisabled" type="button" class="btn btn-default dropdown-toggle"  >
           Vælg kategori
           <span class="caret"></span>
         </button>
@@ -34,7 +34,7 @@
       </div>
       <input class="form-control" placeholder="Indtast et budget" type="text">
       <div class="input-group-btn" >
-        <button  class="btn btn-default" type="button">
+        <button [disabled]="buttonDisabled"  class="btn btn-default" type="button">
           TIlføj!
         </button>
       </div>

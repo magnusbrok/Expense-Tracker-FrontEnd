@@ -7,8 +7,11 @@ import * as CanvasJS from './canvasjs.min';
 })
 export class BudgetComponent implements OnInit {
   isHidden = true;
+  buttonDisabled = true;
   constructor() {}
-
+  buttonEnabled() {
+    this.buttonDisabled = !this.buttonDisabled;
+  }
   show() {
     this.isHidden = !this.isHidden;
   }
