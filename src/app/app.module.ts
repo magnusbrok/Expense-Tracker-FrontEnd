@@ -11,6 +11,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import {AppRoutingModule} from './app-routing.module';
 import { ExpenseEditComponent } from './expenses/expense-edit/expense-edit.component';
 import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {FormsModule} from "@angular/forms";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule
   ],
