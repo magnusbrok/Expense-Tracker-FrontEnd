@@ -1,42 +1,61 @@
-<div  id="chartContainer"style="height: 300px; width: 100%;" chartTopMargin="70"></div> <!--padding-top: 30px;-->
-<div class="form-group">
-  <label class="col-md-12"></label>
-  <div style="text-align: center">
-    <button (click)="show()" class="btn btn-default">Opret et nyt budget</button>
-  </div>
-  <div *ngIf="!isHidden">
-  <div class="col-md-4" >
-    <p>Indtast dit budget!</p>
-    <div class="input-group">
-      <input class="form-control" placeholder="placeholder" type="text">
-      <div class="input-group-btn" >
-        <button (click)="buttonEnabled()" class="btn btn-default" type="button">
-          Tilføj!
-        </button>
-      </div>
+<div class="col">
+  <div class="row">
+    <div class="col-auto">
+      <div  id="chartContainer"style="height: 300px; width: 100%;" chartTopMargin="70"></div> <!--padding-top: 30px;-->
     </div>
   </div>
-  <label class="col-md-12"></label>
-  <div class="col-md-4">
-    <p>Indtast et budget til hver kategori!</p>
-    <div class="input-group">
-      <div class="input-group-btn" appDropDownMenu>
-        <div type="button" class="btn btn-default dropdown-toggle">
-          <label for="category">Vælg kategori</label>
-          <select [disabled]="buttonDisabled" id="category" name="kategori" class="form-control">
-            <option value="1">Forkælesle</option>
-            <option value="2">Druk</option>
-            <option value="2">Computerspil</option>
-          </select>
+  <div class="row">
+    <div class="col-auto">
+      <div class="form-group">
+
+        <div class="row" style="text-align: center">
+          <button (click)="show()" class="btn btn-default">Opret et nyt budget</button>
         </div>
-      <input class="form-control" placeholder="Indtast et budget" type="text">
-      <div class="input-group-btn" >
-        <button [disabled]="buttonDisabled"  class="btn btn-default" type="button">
-          TIlføj!
-        </button>
+        <div class="row" *ngIf="!isHidden">
+          <div class="col  md 4" >
+            <p>Indtast dit budget!</p>
+            <div class="input-group">
+              <input class="form-control" placeholder="placeholder" type="text">
+              <div class="input-group-btn">
+                <button (click)="buttonEnabled()" class="btn btn-default" type="button">
+                  Tilføj!
+                </button>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col">
+              <p>Indtast et budget til hver kategori!</p>
+              <div class="input-group">
+                <div class="input-group-btn" appDropDownMenu>
+                  <div type="button" class="btn btn-default dropdown-toggle">
+                    <select [disabled]="buttonDisabled" id="category" name="kategori" class="form-control">
+                      <option value="1">Forkælesle</option>
+                      <option value="2">Druk</option>
+                      <option value="2">Computerspil</option>
+                    </select>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
       </div>
     </div>
   </div>
-  </div>
 </div>
+
+<input class="form-control" placeholder="Indtast et budget" type="text">
+<div class="input-group-btn" >
+  <button [disabled]="buttonDisabled"  class="btn btn-default" type="button">
+    TIlføj!
+  </button>
 </div>
+
+
+
