@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('ExpenseModel-Tracker-FrontEnd app is running!');
+    expect(page.getTitleText()).toEqual('Expense-Tracker-FrontEnd app is running!');
   });
 
   afterEach(async () => {

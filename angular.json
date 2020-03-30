@@ -120,10 +120,6 @@
           }
         }
       }
-    }
-  },
-  "defaultProject": "Expense-Tracker-FrontEnd",
-  "cli": {
-    "analytics": false
-  }
+    }},
+  "defaultProject": "Expense-Tracker-FrontEnd"
 }
