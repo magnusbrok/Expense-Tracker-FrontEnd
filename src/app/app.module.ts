@@ -23,12 +23,10 @@ import {HttpClientModule} from "@angular/common/http";
     ExpensesComponent,
     HistoryComponent,
     HomePageComponent,
-    DropdownDirective
     ExpenseEditComponent,
     DropdownDirective
   ],
   imports: [
-    BrowserModule
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
