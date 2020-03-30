@@ -6,10 +6,12 @@ import * as CanvasJS from './canvasjs.min';
   styleUrls: ['./budget.component.css']
 })
 export class BudgetComponent implements OnInit {
-
+  isHidden = true;
   constructor() {}
 
-
+  show() {
+    this.isHidden = !this.isHidden;
+  }
   ngOnInit() {
       const chart = new CanvasJS.Chart('chartContainer', {
         animationEnabled: true,
