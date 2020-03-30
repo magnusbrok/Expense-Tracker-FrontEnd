@@ -8,14 +8,16 @@
           type="text"
           name="username"
           ngModel
+          required
           placeholder="Username">
       </div>
       <!-- Password input-->
       <div class="row form-group justify-content-center">
         <input
-          type="text"
+          type="password"
           name="password"
           ngModel
+          required
           placeholder="Password">
       </div>
       <div class="row justify-content-center">
@@ -25,6 +27,7 @@
       <button
         class="btn btn-success"
         type="submit"
+        [disabled]="!f.valid"
       >Login</button>
     </form>
   </div>
