@@ -1,1 +1,44 @@
-<p>history works!</p>
+<br>
+<p>Choose which year you want to see your financial history</p>
+<div
+  class="btn-group"
+  appDropdown>
+  <button
+    type="button"
+    class="btn-primary dropdown-toggle">
+    Year<span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Januar</a></li>
+    <li><a href="#">Februar</a></li>
+    <li><a href="#">Marts</a></li>
+    <li><a href="#">April</a></li>
+    <li><a href="#">Maj</a></li>
+    <li><a href="#">Juni</a></li>
+    <li><a href="#">Juni</a></li>
+    <li><a href="#">August</a></li>
+    <li><a href="#">September</a></li>
+    <li><a href="#">Oktober</a></li>
+    <li><a href="#">November</a></li>
+    <li><a href="#">December</a></li>
+  </ul>
+</div>
+
+<br>
+<br>
+
+<div class="row">
+  <div class="col-md-5">
+    <a
+      class="list-group-item clearfix"
+      *ngFor="let history of histories">
+        <h4 class="list-group-item-heading">{{ history.month }}</h4>
+        <p class="list-group-item-text"> Payments: {{ history.payments }} </p>
+        <p class="list-group-item-text"> Payouts: {{ history.payouts }} </p>
+        <p class="list-group-item-text"> Total: {{ history.total }} </p>
+    </a>
+  </div>
+</div>
+
+<br>
+<br>

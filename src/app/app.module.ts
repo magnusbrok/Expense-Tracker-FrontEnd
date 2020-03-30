@@ -6,11 +6,12 @@ import { HeaderComponent } from './header/header.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { BudgetComponent } from './budget/budget.component';
 import { ExpensesComponent } from './expenses/expenses.component';
-import { HistoryComponent } from './history/history.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import {AppRoutingModule} from './app-routing.module';
 import { ExpenseEditComponent } from './expenses/expense-edit/expense-edit.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
+import { DropdownDirective } from './shared/dropdown.directive';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {FormsModule} from "@angular/forms";
     ExpensesComponent,
     HistoryComponent,
     HomePageComponent,
-    ExpenseEditComponent
+    ExpenseEditComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
