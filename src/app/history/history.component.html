@@ -1,12 +1,12 @@
 <br>
-<p>Vælg hvilket år du ønsker en historik over</p>
+<p>Choose which year you want to see your financial history</p>
 <div
   class="btn-group"
   appDropdown>
   <button
     type="button"
     class="btn-primary dropdown-toggle">
-    Årsoversigt<span class="caret"></span>
+    Year<span class="caret"></span>
   </button>
   <ul class="dropdown-menu">
     <li><a href="#">Januar</a></li>
@@ -28,7 +28,7 @@
 <br>
 
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-md-5">
     <a
       class="list-group-item clearfix"
       *ngFor="let history of histories">
@@ -36,27 +36,9 @@
         <p class="list-group-item-text"> Payments: {{ history.payments }} </p>
         <p class="list-group-item-text"> Payouts: {{ history.payouts }} </p>
         <p class="list-group-item-text"> Total: {{ history.total }} </p>
-      <span class="pull-right">
-      </span>
     </a>
   </div>
 </div>
 
 <br>
 <br>
-
-<table class="table table-hover">
-  <thead>
-  <tr>
-    <th scope="col">Month</th>
-    <th scope="col">Payments</th>
-    <th scope="col">Payouts</th>
-    <th scope="col">Total</th>
-  </tr>
-  </thead>
-  <tbody>
-  <td *ngFor="let history of histories">
-    {{history.month}}
-  </td>
-  </tbody>
-</table>
