@@ -3,10 +3,10 @@ import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-welcome-page',
-  templateUrl: './welcome-page.component.html',
-  styleUrls: ['./welcome-page.component.css']
+  templateUrl: './authentication.component.html',
+  styleUrls: ['./authentication.component.css']
 })
-export class WelcomePageComponent implements OnInit {
+export class AuthenticationComponent implements OnInit {
 
   constructor() { }
 

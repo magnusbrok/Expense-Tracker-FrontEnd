@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
 import { BudgetComponent } from './budget/budget.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -12,12 +12,13 @@ import { ExpenseEditComponent } from './expenses/expense-edit/expense-edit.compo
 import {FormsModule} from '@angular/forms';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { HistoryComponent } from './history/history.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    WelcomePageComponent,
+    AuthenticationComponent,
     BudgetComponent,
     ExpensesComponent,
     HistoryComponent,
@@ -27,6 +28,7 @@ import { HistoryComponent } from './history/history.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule
   ],
