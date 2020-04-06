@@ -12,8 +12,9 @@ import { ExpenseEditComponent } from './expenses/expense-edit/expense-edit.compo
 import {FormsModule} from '@angular/forms';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { HistoryComponent } from './history/history.component';
-import {HttpClientModule} from "@angular/common/http";
 import { BudgetCategoryComponent } from './budget/budget-category/budget-category.component';
+import {HttpClientModule} from '@angular/common/http';
+import {ExpenseListService} from './shared/expense-list.service';
 
 @NgModule({
   declarations: [
@@ -25,8 +26,7 @@ import { BudgetCategoryComponent } from './budget/budget-category/budget-categor
     HistoryComponent,
     HomePageComponent,
     ExpenseEditComponent,
-    DropdownDirective,
-    BudgetCategoryComponent
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
