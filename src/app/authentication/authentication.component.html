@@ -1,5 +1,5 @@
 <div class="card card-login">
-  <div class="card-header"> My Expense Tracker</div>
+  <div class="card-header"><h4>Expense Tracker</h4></div>
   <div class="card-body">
     <form (ngSubmit)="onSubmit(f)" #f="ngForm">
       <!-- Username Input-->
@@ -21,7 +21,7 @@
           placeholder="Password">
       </div>
       <div class="row justify-content-center">
-        <span class="help-block">Forgot your password?</span>
+        <a routerLink="/history" class="card-link help-block">Forgot your password?</a> <!-- TODO edit router link -->
       </div>
       <!-- Button -->
       <button
