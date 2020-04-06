@@ -1,22 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Expense} from './expense.model';
+import {ExpenseListService} from '../shared/expense-list.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-expenses',
   templateUrl: './expenses.component.html',
   styleUrls: ['./expenses.component.css']
 })
-export class ExpensesComponent implements OnInit {
-  expenses: Expense[] = [
-    new Expense(500, 'Spil', new Date(2019, 11, 17), 'købte overwatch'),
-    new Expense(1000, 'Druk', new Date(2020, 3, 24), 'Mange bajer!'),
-    new Expense(69, 'fornøjelse', new Date(2022, 1, 12), 'ikke porno!')
-  ];
+export class ExpensesComponent implements OnInit, OnDestroy {
+  expenses: Expense[];
+  private subscription: Subscription;
 
 
-  constructor() { }
+  constructor(private expenseListService: ExpenseListService) { }
 
   ngOnInit(): void {
+    this.expenses = this.expenseListService.getExpenses();
+    this.subscription = this.expenseListService.expensesChanged.subscribe(
+      (expenses: Expense[]) => {
+        this.expenses = expenses;
+      }
+    );
+  }
+
+  onEditItem(index: number) {
+    this.expenseListService.startedEditing.next(index);
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

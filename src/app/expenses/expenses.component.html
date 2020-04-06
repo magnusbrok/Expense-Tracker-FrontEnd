@@ -15,7 +15,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let expense of expenses">
+        <tr *ngFor="let expense of expenses; let i = index"
+            (click)="onEditItem(i)"
+        >
           <td>
             {{expense.amount}} kr
           </td>
@@ -23,7 +25,7 @@
             {{expense.catagory}}
           </td>
           <td>
-            {{expense.date.toDateString()}}
+            {{expense.date}}
           </td>
           <td>
             {{expense.note}}
