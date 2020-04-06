@@ -26,7 +26,8 @@ import {ExpenseListService} from './shared/expense-list.service';
     HistoryComponent,
     HomePageComponent,
     ExpenseEditComponent,
-    DropdownDirective
+    DropdownDirective,
+    BudgetCategoryComponent
   ],
   imports: [
     BrowserModule,
