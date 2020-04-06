@@ -14,6 +14,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { HistoryComponent } from './history/history.component';
 import {HttpClientModule} from "@angular/common/http";
 import {AuthenticationService} from "./authentication/authentication.service";
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {AuthenticationService} from "./authentication/authentication.service";
     HistoryComponent,
     HomePageComponent,
     ExpenseEditComponent,
-    DropdownDirective
+    DropdownDirective,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
