@@ -13,6 +13,7 @@ import {FormsModule} from '@angular/forms';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { HistoryComponent } from './history/history.component';
 import {HttpClientModule} from "@angular/common/http";
+import {AuthenticationService} from "./authentication/authentication.service";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import {HttpClientModule} from "@angular/common/http";
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

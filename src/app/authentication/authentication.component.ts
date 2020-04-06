@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
+import {AuthenticationService} from "./authentication.service";
 
 @Component({
   selector: 'app-welcome-page',
@@ -8,7 +9,7 @@ import {NgForm} from "@angular/forms";
 })
 export class AuthenticationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
@@ -16,6 +17,7 @@ export class AuthenticationComponent implements OnInit {
   onSubmit(form: NgForm) {
     console.log(form);
     const value = form.value;
-    /*something with REST-service using value.*/
+    this.authService.logIn(value.username, value.password);
+    form.reset();
   }
 }
