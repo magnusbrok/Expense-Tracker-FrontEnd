@@ -74,7 +74,7 @@ export class HomePageComponent implements OnInit {
             {y: 200 }
           ]
         }
-        // TODO: få styr på over/underforbrug
+        // TODO: handle over-/underconsumption
         ]
     });
     chart.render();
