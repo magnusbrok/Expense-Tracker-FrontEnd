@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import * as CanvasJS from './canvasjs.min';
+import {ExpenseListService} from '../shared/expense-list.service';
+import {Expense} from '../expenses/expense.model';
+import {Subscription} from 'rxjs';
 
-// TODO: make dates dynamic
 // TODO: get categories from method get category (or something alike)
-// TODO: make values dynamic - get from expenses/history and budget
 
-// y-values in dataPoints are placeholder
 // categories are placeholder
 
 @Component({
@@ -14,9 +14,24 @@ import * as CanvasJS from './canvasjs.min';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  underholdningBudget = 300;
-  underholdningExpense = 200;
+
+  constructor(private expenseListService: ExpenseListService) {}
+  expenses: Expense[];
+  private subscription: Subscription;
+
+  foodBudget = 700;
+  foodExpense: number;
   ngOnInit() {
+    this.expenses = this.expenseListService.getExpenses();
+    this.subscription = this.expenseListService.expensesChanged.subscribe(
+      (expenses: Expense[]) => {
+        this.expenses = expenses;
+      }
+    );
+    // TODO: Make sure the overconsumption is calculated correctly, and isnt hardcoded
+    // TODO: get budged from budget service
+    // TODO: handle if expense list is empty
+    this.foodExpense = this.expenseListService.getExpense(0).amount - this.foodBudget;
     const chart = new CanvasJS.Chart('chartContainer', {
       animationEnabled: true,
       title: {
@@ -40,10 +55,10 @@ export class HomePageComponent implements OnInit {
           xValueFormatString: '######################',
           yValueFormatString: '### "kr"',
           dataPoints: [
-            { label: 'Underholdning' , y: this.underholdningBudget },
-            { label: 'Mad' , y: 700 },
-            { label: 'Elektronik', y: 500 },
-            { label: 'Andet', y: 300 }
+            { label: 'Entertainment' , y: this.foodBudget },
+            { label: 'Food' , y: 700 },
+            { label: 'Electronics', y: 500 },
+            { label: 'Other', y: 300 }
           ]
         },
         {
@@ -53,12 +68,13 @@ export class HomePageComponent implements OnInit {
           xValueFormatString: '#########################',
           yValueFormatString: '### "kr"',
           dataPoints: [
-            { y: this.underholdningExpense },
-            { y:  800 - 700},
+            { y: 300 },
+            { y:  this.foodExpense},
             {y: 500 },
             {y: 200 }
           ]
         }
+        // TODO: få styr på over/underforbrug
         ]
     });
     chart.render();
