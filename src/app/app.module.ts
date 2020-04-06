@@ -13,6 +13,7 @@ import {FormsModule} from '@angular/forms';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { HistoryComponent } from './history/history.component';
 import {HttpClientModule} from "@angular/common/http";
+import { BudgetCategoryComponent } from './budget/budget-category/budget-category.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {HttpClientModule} from "@angular/common/http";
     HistoryComponent,
     HomePageComponent,
     ExpenseEditComponent,
-    DropdownDirective
+    DropdownDirective,
+    BudgetCategoryComponent
   ],
   imports: [
     BrowserModule,
