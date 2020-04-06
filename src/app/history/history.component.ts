@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {History} from './history.model';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { History } from './history.model';
 
 @Component({
   selector: 'app-history',
@@ -7,6 +7,7 @@ import {History} from './history.model';
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
+  @Output() monthSelected = new EventEmitter<History>();
   histories: History[] = [
     new History('January', 35000, 36000, -1000),
     new History('February', 34000, 32000, 2000),
@@ -14,8 +15,9 @@ export class HistoryComponent implements OnInit {
     new History('April', 39000, 41000, -2000)
   ];
 
-  constructor() { }
+  constructor() {
+  }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 }

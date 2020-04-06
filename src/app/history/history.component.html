@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-10 form-group">
-    <label for="category">Year</label>
+    <label for="category">Year:</label>
     <select id="category" name="category" class="form-control" style="cursor: pointer;">
       <option value="1">2018</option>
       <option value="2">2019</option>
@@ -15,17 +15,17 @@
 <br>
 
 <div class="row">
-  <div class="col-md-12">
-    <a
-      class="list-group-item clearfix" style="cursor: pointer;"
-      *ngFor="let history of histories">
-        <h4 class="list-group-item-heading">{{ history.month }}</h4>
-        <p class="list-group-item-text"> Payments: {{ history.payments }} </p>
-        <p class="list-group-item-text"> Payouts: {{ history.payouts }} </p>
-        <p class="list-group-item-text"> Total: {{ history.total }} </p>
-    </a>
+  <div class="col-sm-12">
+    <app-history-selected
+      *ngFor="let historyEl of histories"
+      [historySelected]="historyEl"></app-history-selected>
   </div>
 </div>
 
 <br>
 <br>
+
+<ul class="list-group">
+  <li class="list-group-item list-group-item-success">This is a success list group item</li>
+  <li class="list-group-item list-group-item-danger">This is a warning list group item</li>
+</ul>

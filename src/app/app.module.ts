@@ -12,7 +12,8 @@ import { ExpenseEditComponent } from './expenses/expense-edit/expense-edit.compo
 import {FormsModule} from '@angular/forms';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { HistoryComponent } from './history/history.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from '@angular/common/http';
+import { HistorySelectedComponent } from './history/history-selected/history-selected.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {HttpClientModule} from "@angular/common/http";
     HistoryComponent,
     HomePageComponent,
     ExpenseEditComponent,
-    DropdownDirective
+    DropdownDirective,
+    HistorySelectedComponent
   ],
   imports: [
     BrowserModule,
