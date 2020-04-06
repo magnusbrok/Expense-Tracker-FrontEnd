@@ -35,7 +35,7 @@ import {ExpenseListService} from './shared/expense-list.service';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ExpenseListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
