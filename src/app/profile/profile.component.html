@@ -1,5 +1,5 @@
 <div class="row main mt-5">
-  <div class="col-lg-5">
+  <div class="col-lg-6">
     <div class="card card-profile">
       <div class="card-body">
         <h5>Account Details</h5>
@@ -9,23 +9,23 @@
           <tbody>
             <tr>
               <td>Username</td>
-              <td>________</td>
+              <td>{{user.username}}</td>
             </tr>
             <tr>
               <td>First Name</td>
-              <td>________</td>
+              <td>{{user.firstName}}</td>
             </tr>
             <tr>
               <td>Last Name</td>
-              <td>________</td>
+              <td>{{user.lastName}}</td>
             </tr>
             <tr>
               <td>Study</td>
-              <td>________</td>
+              <td>{{user.study}}</td>
             </tr>
             <tr>
               <td>Email</td>
-              <td>________</td>
+              <td>{{user.email}}</td>
             </tr>
           </tbody>
         </table>
@@ -33,7 +33,7 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-7">
+  <div class="col-lg-6">
     <app-change-password></app-change-password>
   </div>
 </div>
