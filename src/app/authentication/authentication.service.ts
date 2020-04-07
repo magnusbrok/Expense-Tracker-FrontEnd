@@ -13,7 +13,8 @@ export class AuthenticationService {
     'sXXXXXX@student.dtu.dk',
     'science bitch!',
     'Test',
-    'Testsen'
+    'Testsen',
+    '*********'
   );
 
   constructor() {  }
@@ -34,7 +35,8 @@ export class AuthenticationService {
           's173998@student.dtu.dk',
           'ITØ',
           'Siff',
-          'Ravn'
+          'Ravn',
+          '****'
         ));
       }
   }
@@ -45,7 +47,12 @@ export class AuthenticationService {
       '',
       '',
       '',
+      '',
       ''
     ));
+  }
+
+  changePassword(currentPassword: string, newPassword: string, confirmNew: string) {
+
   }
 }
