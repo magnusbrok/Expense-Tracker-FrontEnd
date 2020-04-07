@@ -15,6 +15,7 @@ import { HistoryComponent } from './history/history.component';
 import {HttpClientModule} from "@angular/common/http";
 import {AuthenticationService} from "./authentication/authentication.service";
 import { ProfileComponent } from './profile/profile.component';
+import { ChangePasswordComponent } from './profile/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ProfileComponent } from './profile/profile.component';
     HomePageComponent,
     ExpenseEditComponent,
     DropdownDirective,
-    ProfileComponent
+    ProfileComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
