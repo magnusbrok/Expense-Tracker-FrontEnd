@@ -12,8 +12,11 @@ import { ExpenseEditComponent } from './expenses/expense-edit/expense-edit.compo
 import {FormsModule} from '@angular/forms';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { HistoryComponent } from './history/history.component';
+import {HttpClientModule} from "@angular/common/http";
+import {AuthenticationService} from "./authentication/authentication.service";
+import { ProfileComponent } from './profile/profile.component';
+import { ChangePasswordComponent } from './profile/change-password/change-password.component';
 import { BudgetCategoryComponent } from './budget/budget-category/budget-category.component';
-import {HttpClientModule} from '@angular/common/http';
 import {ExpenseListService} from './shared/expense-list.service';
 import { HistorySelectedComponent } from './history/history-selected/history-selected.component';
 
@@ -28,6 +31,8 @@ import { HistorySelectedComponent } from './history/history-selected/history-sel
     HomePageComponent,
     ExpenseEditComponent,
     DropdownDirective,
+    ProfileComponent,
+    ChangePasswordComponent,
     BudgetCategoryComponent,
     DropdownDirective,
     HistorySelectedComponent
@@ -38,7 +43,7 @@ import { HistorySelectedComponent } from './history/history-selected/history-sel
     AppRoutingModule,
     FormsModule
   ],
-  providers: [ExpenseListService],
+  providers: [AuthenticationService, ExpenseListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
