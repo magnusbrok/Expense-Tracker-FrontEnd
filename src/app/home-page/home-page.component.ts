@@ -20,7 +20,7 @@ export class HomePageComponent implements OnInit {
   private subscription: Subscription;
 
   foodBudget = 700;
-  foodExpense: number;
+  foodExpense =  0;
   ngOnInit() {
     this.expenses = this.expenseListService.getExpenses();
     this.subscription = this.expenseListService.expensesChanged.subscribe(
@@ -31,7 +31,9 @@ export class HomePageComponent implements OnInit {
     // TODO: Make sure the overconsumption is calculated correctly, and isnt hardcoded
     // TODO: get budged from budget service
     // TODO: handle if expense list is empty
+    if  (this.expenses.length > 0) {
     this.foodExpense = this.expenseListService.getExpense(0).amount - this.foodBudget;
+    }
     const chart = new CanvasJS.Chart('chartContainer', {
       animationEnabled: true,
       title: {
