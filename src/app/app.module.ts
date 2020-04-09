@@ -18,7 +18,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { ChangePasswordComponent } from './profile/change-password/change-password.component';
 import { BudgetCategoryComponent } from './budget/budget-category/budget-category.component';
 import {ExpenseListService} from './shared/expense-list.service';
-import { HistorySelectedComponent } from './history/history-selected/history-selected.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +34,6 @@ import { HistorySelectedComponent } from './history/history-selected/history-sel
     ChangePasswordComponent,
     BudgetCategoryComponent,
     DropdownDirective,
-    HistorySelectedComponent
   ],
   imports: [
     BrowserModule,
