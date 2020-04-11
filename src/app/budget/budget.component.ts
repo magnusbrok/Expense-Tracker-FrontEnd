@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import * as CanvasJS from './canvasjs.min';
-import {buffer} from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
+import {Subscription} from 'rxjs';
+import {BudgetModel} from './budget.model';
+import {BudgetListService} from '../shared/budget-list.service';
 @Component({
   selector: 'app-budget',
   templateUrl: './budget.component.html',
@@ -9,40 +10,22 @@ import {NgForm} from '@angular/forms';
 })
 export class BudgetComponent implements OnInit {
   isHidden = true;
-  buttonDisabled = true;
-  constructor() {}
+  budgetList: BudgetModel[];
+  private subscription: Subscription;
+  constructor(private budgetListService: BudgetListService) { }
 
-  buttonEnabled() {
-    this.buttonDisabled = !this.buttonDisabled;
-  }
   show() {
     this.isHidden = !this.isHidden;
   }
   addBudget(form: NgForm) {
     console.log(form);
   }
-  ngOnInit() {
-      const chart = new CanvasJS.Chart('chartContainer', {
-        animationEnabled: true,
-        exportEnabled: true,
-        title: {
-          text: 'Oversigt over dine seneste udgifter '
-        },
-        data: [{
-          type: 'pie',
-          showInLegend: true,
-          toolTipContent: '<b>{name}</b>: ${y} (#percent%)',
-          indexLabel: '{name} - #percent%',
-          dataPoints: [
-            { y: 450, name: 'Apple' },
-            { y: 120, name: 'Mango' },
-            { y: 300, name: 'Orange' },
-            { y: 800, name: 'Banana' },
-            { y: 150, name: 'Pineapple' }
-          ]
-        }]
-      });
-
-      chart.render();
-    }
+  ngOnInit(): void {
+    this.budgetList = this.budgetListService.getBudgets();
+    this.subscription = this.budgetListService.budgetChange.subscribe(
+      (budgetList: BudgetModel[]) => {
+        this.budgetList = budgetList;
+      }
+    );
+  }
 }

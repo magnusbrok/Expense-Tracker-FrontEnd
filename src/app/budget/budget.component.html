@@ -1,46 +1,42 @@
 <div class="col">
-    <div class="col-auto">
-      <div  id="chartContainer"style="height: 300px; width: 1000px;" chartTopMargin="70"></div> <!--padding-top: 30px;-->
-    </div>
-    <div class="col-auto">
+  <div class="row mt-3">
+    <h2>Oversigt over budget</h2>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Budget</th>
+        <th scope="col">Month</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let budget of budgetList; let i = index">
+        <td>
+          {{budget.overAllBudget}}
+        </td>
+        <td>
+          {{budget.date}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+    <div class="col-auto mt-3">
       <div class="form-group">
-        <div class="text-center">
+        <div class="text-left">
           <button (click)="show()" class="btn btn-primary">Opret et nyt budget</button>
         </div>
-        <div class="row">
+        <div class="row mt-3">
         <form (ngSubmit)="addBudget(budget)" #budget="ngForm"> <!--For at console.log-->
         <div class="row" *ngIf="!isHidden">
-          <div class="col  md 4" >
-            <label>Indtast dit budget!</label>
-            <div class="input-group">
-              <input class="form-control"
-                     ngModel
-                     id="overAllBudget"
-                     name="overAllBudget"
-                     type="text"
-                     required
-                     pattern="^[1-9]+[0-9]*$" ><!--Ingen negative tal eller bogstaver-->
-
-              <div class="input-group-btn">
-                <button
-                  [disabled]=!budget.valid
-                        class="btn btn-primary"
-                        type="submit">Tilføj!</button>
-              </div>
-            </div>
-            <span class="help-block"
-                  *ngIf="!budget.valid &&
-                    budget.touched"> Please enter a valid budget!</span>
-          </div>
-          <div>
-            <app-budget-category></app-budget-category>
-          </div>
+          <div class="class col sm 3 form-group">
+          <app-budget-category></app-budget-category>
+        </div>
         </div>
         </form>
         </div>
       </div>
     </div>
-</div>
 
 
 

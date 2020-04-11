@@ -19,6 +19,7 @@ import { ChangePasswordComponent } from './profile/change-password/change-passwo
 import { BudgetCategoryComponent } from './budget/budget-category/budget-category.component';
 import {ExpenseListService} from './shared/expense-list.service';
 import { HistorySelectedComponent } from './history/history-selected/history-selected.component';
+import {BudgetListService} from './shared/budget-list.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { HistorySelectedComponent } from './history/history-selected/history-sel
     AppRoutingModule,
     FormsModule
   ],
-  providers: [AuthenticationService, ExpenseListService],
+  providers: [AuthenticationService, ExpenseListService, BudgetListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
