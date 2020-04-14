@@ -8,14 +8,7 @@ import {Subject} from "rxjs";
 export class AuthenticationService {
 
   userChanged = new Subject();
-  private user = new User(
-    'sXXXXXX',
-    'sXXXXXX@student.dtu.dk',
-    'science bitch!',
-    'Test',
-    'Testsen',
-    '*********'
-  );
+  private user = null;
 
   constructor() {  }
 
@@ -42,14 +35,7 @@ export class AuthenticationService {
   }
 
   logout() {
-    this.setUser(new User(
-      '',
-      '',
-      '',
-      '',
-      '',
-      ''
-    ));
+    this.setUser(null);
   }
 
   changePassword(currentPassword: string, newPassword: string, confirmNew: string) {
