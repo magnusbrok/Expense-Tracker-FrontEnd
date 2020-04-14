@@ -10,7 +10,7 @@ import {User} from "../authentication/user.model";
 })
 export class HeaderComponent implements OnInit {
 
-  username: string;
+  user: User;
   isAuthenticated = false;
   subscription: Subscription;
 
@@ -19,8 +19,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.authService.user
       .subscribe( user => {
-        this.isAuthenticated = !!user;
-        this.username = user.username;
+        this.user = user;
+        this.isAuthenticated = !!this.user;
       });
   }
 
