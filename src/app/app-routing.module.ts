@@ -6,7 +6,7 @@ import {ExpensesComponent} from './expenses/expenses.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {AuthenticationComponent} from './authentication/authentication.component';
 import { HistoryComponent } from './history/history.component';
-import {ProfileComponent} from "./profile/profile.component";
+import {ProfileComponent} from './profile/profile.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/home-page', pathMatch: 'full'},

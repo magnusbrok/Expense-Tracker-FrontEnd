@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from "@angular/forms";
-import {AuthenticationService} from "./authentication.service";
+import {NgForm} from '@angular/forms';
+import {AuthenticationService} from './authentication.service';
 
 @Component({
   selector: 'app-welcome-page',

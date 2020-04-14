@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {User} from "./user.model";
-import {Subject} from "rxjs";
+import {User} from './user.model';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +18,11 @@ export class AuthenticationService {
 
   setUser(value: User) {
     this.user = value;
-    this.userChanged.next(this.user)
+    this.userChanged.next(this.user);
   }
 
   logIn(username: string, password: string) {
-      if (username == 's173998' && password == 'kk29'){
+      if (username === 's173998' && password === 'kk29'){
         this.setUser( new User(
           username,
           's173998@student.dtu.dk',
