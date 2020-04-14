@@ -8,10 +8,12 @@ import {AuthenticationComponent} from './authentication/authentication.component
 import { HistoryComponent } from './history/history.component';
 import {ProfileComponent} from "./profile/profile.component";
 import {AuthenticationGuard} from "./authentication/authentication.guard";
+import {FrontPageComponent} from "./front-page/front-page.component";
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: '/home-page', pathMatch: 'full'},
-  { path: 'home-page', component: HomePageComponent },
+  {path: '', component: FrontPageComponent},
+  // {path: '', redirectTo: '/home-page', pathMatch: 'full'},
+  { path: 'home-page', component: HomePageComponent, canActivate: [AuthenticationGuard] },
   { path: 'budget', component: BudgetComponent, canActivate: [AuthenticationGuard]},
   { path: 'history', component: HistoryComponent, canActivate: [AuthenticationGuard] },
   { path: 'expenses', component: ExpensesComponent, canActivate: [AuthenticationGuard] },

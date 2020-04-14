@@ -21,6 +21,7 @@ import {ExpenseListService} from './shared/expense-list.service';
 import { HistorySelectedComponent } from './history/history-selected/history-selected.component';
 import {BudgetListService} from './shared/budget-list.service';
 import {AuthenticationGuard} from "./authentication/authentication.guard";
+import { FrontPageComponent } from './front-page/front-page.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {AuthenticationGuard} from "./authentication/authentication.guard";
     ChangePasswordComponent,
     BudgetCategoryComponent,
     DropdownDirective,
-    HistorySelectedComponent
+    HistorySelectedComponent,
+    FrontPageComponent
   ],
   imports: [
     BrowserModule,
