@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from "../authentication/authentication.service";
 import {Subscription} from "rxjs";
 import {User} from "../authentication/user.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,10 @@ export class HeaderComponent implements OnInit {
   isAuthenticated = false;
   subscription: Subscription;
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(
+    private authService: AuthenticationService,
+    private router : Router
+  ) { }
 
   ngOnInit(): void {
     this.subscription = this.authService.user
@@ -30,5 +34,6 @@ export class HeaderComponent implements OnInit {
 
   onLogout() {
     this.authService.logout();
+    this.router.navigate(['/authentication']);
   }
 }
