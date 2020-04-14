@@ -31,7 +31,9 @@ export class AuthenticationService {
           'Ravn',
           '****'
         ));
+        return true;
       }
+      else return false;
   }
 
   logout() {

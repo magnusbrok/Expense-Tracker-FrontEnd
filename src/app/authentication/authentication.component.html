@@ -2,6 +2,12 @@
   <div class="card-header"><h4>Expense Tracker</h4></div>
   <div class="card-body">
     <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+      <!-- Error message -->
+      <div class="alert alert-danger" *ngIf="error">
+        <p>{{ error }}</p>
+      </div>
+
       <!-- Username Input-->
       <div class="row form-group justify-content-center">
         <input
