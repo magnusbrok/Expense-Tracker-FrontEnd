@@ -26,7 +26,7 @@ export class AuthenticationComponent implements OnInit {
     let authenticated = this.authService.logIn(value.username, value.password);
 
     if (authenticated){
-      this.router.navigate(['/home-page']);
+      this.router.navigate(['/user']);
     }
     else {
       this.error = 'An error occurred!';

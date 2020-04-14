@@ -11,14 +11,14 @@ import {User} from "../authentication/user.model";
 export class HeaderComponent implements OnInit {
 
   username: string;
-  isAuthenticated : boolean;
+  isAuthenticated = false;
   subscription: Subscription;
 
   constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.subscription = this.authService.userChanged
-      .subscribe( (user: User) => {
+    this.subscription = this.authService.user
+      .subscribe( user => {
         this.isAuthenticated = !!user;
         this.username = user.username;
       });
