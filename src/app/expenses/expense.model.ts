@@ -1,5 +1,5 @@
 export class Expense {
-  constructor(public amount: number, public catagory: string, public date: Date, public note: string) {
+  constructor(public amount: number, public category: string, public date: Date, public note: string) {
   }
 
 

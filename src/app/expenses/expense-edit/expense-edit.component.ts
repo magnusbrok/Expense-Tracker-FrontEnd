@@ -26,7 +26,7 @@ export class ExpenseEditComponent implements OnInit, OnDestroy {
         this.editedItem = this.expenseListService.getExpense(index);
         this.elForm.setValue({
           amount: this.editedItem.amount,
-          category: this.editedItem.catagory,
+          category: this.editedItem.category,
           date: this.editedItem.date,
           note: this.editedItem.note
         });
