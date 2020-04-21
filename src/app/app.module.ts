@@ -40,7 +40,8 @@ import {BudgetListService} from './shared/budget-list.service';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [AuthenticationService, ExpenseListService, BudgetListService],
   bootstrap: [AppComponent]
