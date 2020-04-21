@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {AuthenticationService} from "./authentication.service";
 import {Router} from "@angular/router";
+import {User} from "./user.model";
 
 @Component({
   selector: 'app-welcome-page',
@@ -10,6 +11,7 @@ import {Router} from "@angular/router";
 })
 export class AuthenticationComponent implements OnInit {
   error: string;
+  isAuthenticated : boolean;
 
   constructor(
     private authService: AuthenticationService,
@@ -17,20 +19,19 @@ export class AuthenticationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.authService.userChanged.subscribe( (user : User) => {
+        this.isAuthenticated = !! user;
+
+        if (this.isAuthenticated) this.router.navigate(['/home-page']);
+        else this.error = 'An error occurred!';
+    });
   }
 
   onSubmit(form: NgForm) {
     console.log(form);
     const value = form.value;
 
-    let authenticated = this.authService.logIn(value.username, value.password);
-
-    if (authenticated){
-      this.router.navigate(['/home-page']);
-    }
-    else {
-      this.error = 'An error occurred!';
-    }
+    this.authService.logIn(value.username, value.password);
     form.reset();
   }
 }

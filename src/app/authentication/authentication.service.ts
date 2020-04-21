@@ -30,9 +30,6 @@ export class AuthenticationService {
       console.log(user);
       this.setUser(user)
     });
-
-    if (!!this.user) return true;
-    else return false;
   }
 
   logout() {
