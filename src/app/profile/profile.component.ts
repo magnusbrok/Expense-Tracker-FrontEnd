@@ -14,13 +14,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   // subscription = new Subscription();
   user : User;
-  userSub : Subscription;
+
 
   ngOnInit(): void {
-    this.userSub = this.authService.user
-      .subscribe(user => {
-        this.user = user;
-      });
+    // this.subscription = this.authService.userChanged
+    //   .subscribe(
+    //     (user: User) => { this.user = user}
+    //   );
+
+    this.user = this.authService.getUser();
   }
 
   ngOnDestroy(): void {

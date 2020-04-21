@@ -11,8 +11,8 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent implements OnInit {
 
-  user: User;
-  isAuthenticated = false;
+  username: string;
+  isAuthenticated : boolean;
   subscription: Subscription;
 
   constructor(
@@ -21,10 +21,10 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.subscription = this.authService.user
-      .subscribe( user => {
-        this.user = user;
-        this.isAuthenticated = !!this.user;
+    this.subscription = this.authService.userChanged
+      .subscribe( (user: User) => {
+        this.isAuthenticated = !!user;
+        this.username = user.username;
       });
   }
 

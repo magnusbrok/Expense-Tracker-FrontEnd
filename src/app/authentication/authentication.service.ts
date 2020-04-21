@@ -1,25 +1,24 @@
 import { Injectable } from '@angular/core';
 import {User} from "./user.model";
-import {BehaviorSubject, Subject} from "rxjs";
+import {Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  user = new BehaviorSubject<User>(null);
-
-  // userChanged = new Subject();
-  // private user = null;
+  userChanged = new Subject();
+  private user = null;
 
   constructor() {  }
 
-  // getUser(): User {
-  //   return this.user;
-  // }
+  getUser(): User {
+    return this.user;
+  }
 
   setUser(value: User) {
-    this.user.next(value);
+    this.user = value;
+    this.userChanged.next(this.user)
   }
 
   logIn(username: string, password: string) {

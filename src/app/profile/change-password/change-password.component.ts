@@ -17,10 +17,12 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
   passwordPlaceholder: string;
 
   ngOnInit(): void {
-    this.subscription = this.authService.user
-      .subscribe(user => {
-        this.passwordPlaceholder = user.passwordPlaceholder
-      });
+    this.subscription = this.authService.userChanged
+      .subscribe(
+        (user: User) => { this.passwordPlaceholder = user.passwordPlaceholder}
+      );
+
+    this.passwordPlaceholder = this.authService.getUser().passwordPlaceholder;
   }
 
   ngOnDestroy(): void {
