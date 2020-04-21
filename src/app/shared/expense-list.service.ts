@@ -7,6 +7,11 @@ export class ExpenseListService {
 
   expenses: Expense[] = [];
 
+  setExpenses(expenses: Expense[]) {
+    this.expenses = expenses;
+    this.expensesChanged.next(this.expenses.slice());
+  }
+
   getExpenses() {
     return this.expenses.slice();
   }

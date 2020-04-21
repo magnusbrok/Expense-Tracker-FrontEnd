@@ -34,8 +34,8 @@ export class ExpensesComponent implements OnInit, OnDestroy {
   }
 
   fetchExpenses() {
-    this.http.get('http://localhost:8080/expenses').subscribe(expenses => {
-      console.log(expenses);
+    this.http.get<Expense[]>('http://localhost:8080/expenses').subscribe(fetchedExpenses => {
+      this.expenseListService.setExpenses(fetchedExpenses);
     });
   }
 
