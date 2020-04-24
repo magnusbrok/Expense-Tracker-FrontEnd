@@ -9,7 +9,9 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let post of currBudget.postList; let i = index">
+      <tr *ngFor="let post of currBudget.postList; let i = index"
+      (click)="onEditItem(i)"
+      >
         <td>
           {{post.category}}
         </td>

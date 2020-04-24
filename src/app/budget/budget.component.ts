@@ -18,16 +18,6 @@ export class BudgetComponent implements OnInit, OnDestroy {
   constructor(private budgetListService: BudgetPostListService) { }
 
 
-  show() {
-    this.isHidden = !this.isHidden;
-  }
-
-  addBudgetPost() {
-    this.isAddingPost = !this.isAddingPost;
-  }
-  addBudget(form: NgForm) {
-    console.log(form);
-  }
   ngOnInit(): void {
     this.currBudget = this.budgetListService.getCurrentBudget();
     this.subscription = this.budgetListService.budgetChanged.subscribe(
@@ -35,6 +25,19 @@ export class BudgetComponent implements OnInit, OnDestroy {
         this.currBudget = budget;
       }
     );
+  }
+
+  show() {
+    this.isHidden = !this.isHidden;
+  }
+  addBudgetPost() {
+    this.isAddingPost = !this.isAddingPost;
+  }
+  addBudget(form: NgForm) {
+    console.log(form);
+  }
+  onEditItem(index: number) {
+    this.budgetListService.startedEditing.next(index);
   }
 
   ngOnDestroy(): void {

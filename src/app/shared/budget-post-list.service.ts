@@ -7,7 +7,7 @@ export class BudgetPostListService {
   budgetChanged = new Subject<Budget>();
   startedEditing = new Subject<number>();
   budgetList: Budget[] = [];
-  budget: Budget = new Budget(2020, 4);
+  budget: Budget = new Budget(2020, 5);
 
   setPostList(posts: BudgetPost[]) {
     this.budget.postList = posts;
@@ -35,6 +35,11 @@ export class BudgetPostListService {
 
   getCurrentBudget() {
     return this.budget;
+  }
+
+  deleteBudgetPost(index: number) {
+    this.budget.postList.splice(index, 1);
+    this.budgetChanged.next(this.budget);
   }
 
 

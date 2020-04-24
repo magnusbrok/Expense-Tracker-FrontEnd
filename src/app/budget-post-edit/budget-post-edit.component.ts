@@ -44,6 +44,7 @@ export class BudgetPostEditComponent implements OnInit, OnDestroy{
       this.budgetService.addBudgetPost(newBudgetPost);
     }
     this.editMode = false;
+    this.budgetService.budget.updateTotalAmount();
     form.reset();
   }
   onClear() {
@@ -53,6 +54,9 @@ export class BudgetPostEditComponent implements OnInit, OnDestroy{
 
   onDelete() {
     this.onClear();
+    this.budgetService.deleteBudgetPost(this.editedItemIndex);
+    this.budgetService.budget.updateTotalAmount();
+
   }
 
   ngOnDestroy(): void {
