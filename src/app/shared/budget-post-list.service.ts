@@ -1,19 +1,41 @@
-
 import {Subject} from 'rxjs';
 import {BudgetPost} from '../budget/budgetPost.model';
 import {Budget} from '../budget/budget.model';
 
 export class BudgetPostListService {
-  budgetChange = new Subject<Budget[]>();
-  postChanged = new Subject<BudgetPost[]>();
+  budgetListChange = new Subject<Budget[]>();
+  budgetChanged = new Subject<Budget>();
+  startedEditing = new Subject<number>();
   budgetList: Budget[] = [];
-
   budget: Budget = new Budget(2020, 4);
 
-  postList: BudgetPost[] = [
-    new BudgetPost('TestCat', 1099),
-    new BudgetPost('husleje', 5400)
-  ];
+  setPostList(posts: BudgetPost[]) {
+    this.budget.postList = posts;
+    this.budgetChanged.next(this.budget);
+  }
+
+  getPostList() {
+    return this.budget.postList.slice();
+  }
+
+  getPost(index: number) {
+    return this.budget.postList[index];
+  }
+
+  addBudgetPost(post: BudgetPost) {
+    this.budget.postList.push(post);
+    this.budgetChanged.next(this.budget);
+    console.log(post);
+  }
+
+  updateBudgetPost(index: number, newPost: BudgetPost) {
+    this.budget.postList[index] = newPost;
+    this.budgetChanged.next(this.budget);
+  }
+
+  getCurrentBudget() {
+    return this.budget;
+  }
 
 
 
@@ -25,15 +47,6 @@ export class BudgetPostListService {
   }
   addBudget(budget: Budget) {
     this.budgetList.push(budget);
-    this.budgetChange.next(this.budgetList.slice());
-  }
-
-  setPostList(posts: BudgetPost[]) {
-    this.budget.postList = posts;
-    this.postChanged.next(this.budget.postList.slice());
-  }
-
-  addBudgetPost(post: BudgetPost) {
-    this.budget.postList.push(post);
+    this.budgetListChange.next(this.budgetList.slice());
   }
 }

@@ -6,7 +6,7 @@ export class Budget {
 
   constructor(public year: number, public month: number ) {
     this.postList = [
-      new BudgetPost('TestCat', 1099),
+      new BudgetPost('El', 1099),
       new BudgetPost('husleje', 5400)
     ];
 

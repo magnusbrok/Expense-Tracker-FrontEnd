@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs';
 
@@ -10,13 +10,11 @@ import {BudgetPost} from './budgetPost.model';
   templateUrl: './budget.component.html',
   styleUrls: ['./budget.component.css']
 })
-export class BudgetComponent implements OnInit {
+export class BudgetComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
   isHidden = true;
   isAddingPost = false;
-  budgetList: Budget[];
-  currBudget: Budget = new Budget(2020, 4);
-  currBudgetPosts: BudgetPost[] = this.currBudget.postList;
-  private subscription: Subscription;
+  currBudget: Budget;
   constructor(private budgetListService: BudgetPostListService) { }
 
 
@@ -31,12 +29,16 @@ export class BudgetComponent implements OnInit {
     console.log(form);
   }
   ngOnInit(): void {
-    this.budgetList = this.budgetListService.getBudgets();
-    this.subscription = this.budgetListService.budgetChange.subscribe(
-      (budgetList: Budget[]) => {
-        this.budgetList = budgetList;
+    this.currBudget = this.budgetListService.getCurrentBudget();
+    this.subscription = this.budgetListService.budgetChanged.subscribe(
+      (budget: Budget) => {
+        this.currBudget = budget;
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

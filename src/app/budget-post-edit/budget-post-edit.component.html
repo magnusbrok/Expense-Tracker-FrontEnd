@@ -1,6 +1,5 @@
 <form (ngSubmit)="onSubmit(f)" #f="ngForm">
   <div class="row">
-
     <div class="class col sm 4 form-group">
       <label>Choose categories!</label>
       <select
@@ -17,13 +16,13 @@
     </div>
     <div class="class col sm 4 form-group">
       <div class="row">
-        <label> Categories budget!</label>
+        <label>Amount</label>
         <div class="input-group">
           <input
             class="form-control"
             ngModel
-            id="categoryBudget"
-            name="categoryBudget"
+            id="amount"
+            name="amount"
             type="text"
             required
             pattern="^[1-9]+[0-9]*$">
