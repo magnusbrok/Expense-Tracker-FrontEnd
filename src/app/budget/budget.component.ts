@@ -16,6 +16,8 @@ export class BudgetComponent implements OnInit, OnDestroy {
   isHidden = true;
   isAddingPost = false;
   currBudget: Budget;
+  totalAmount = 0;
+  currentMonth = 'ingenmåned';
   constructor(private budgetListService: BudgetPostListService, private backEndService: BackEndService) { }
 
 
@@ -24,6 +26,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
     this.subscription = this.budgetListService.budgetChanged.subscribe(
       (budget: Budget) => {
         this.currBudget = budget;
+        this.currentMonth = new Date(this.currBudget.year, this.currBudget.month - 1).toLocaleString('default', { month: 'long' });
       }
     );
     // TODO fix BAD PRACTISE!!!!! -Siff
