@@ -3,6 +3,9 @@ import {Expense} from './expense.model';
 import {ExpenseListService} from '../shared/expense-list.service';
 import {Subscription} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {User} from '../authentication/user.model';
+import {AuthenticationService} from '../authentication/authentication.service';
+import {BackEndService} from '../back-end.service';
 
 @Component({
   selector: 'app-expenses',
@@ -14,10 +17,11 @@ export class ExpensesComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
 
-  constructor(private expenseListService: ExpenseListService, private http: HttpClient) { }
+  constructor(private expenseListService: ExpenseListService, private http: HttpClient,
+              private authenticationService: AuthenticationService, private backEndService: BackEndService) { }
 
   ngOnInit(): void {
-    this.fetchExpenses();
+    this.backEndService.fetchExpenses(this.authenticationService.getUser().username);
     this.expenses = this.expenseListService.getExpenses();
     this.subscription = this.expenseListService.expensesChanged.subscribe(
       (expenses: Expense[]) => {
@@ -31,12 +35,6 @@ export class ExpensesComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
-  }
-
-  fetchExpenses() {
-    this.http.get<Expense[]>('http://localhost:8080/expenses').subscribe(fetchedExpenses => {
-      this.expenseListService.setExpenses(fetchedExpenses);
-    });
   }
 
 }

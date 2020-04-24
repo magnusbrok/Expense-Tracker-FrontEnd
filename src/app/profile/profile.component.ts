@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AuthenticationService} from "../authentication/authentication.service";
-import {Subscription} from "rxjs";
-import {User} from "../authentication/user.model";
+import {AuthenticationService} from '../authentication/authentication.service';
+import {Subscription} from 'rxjs';
+import {User} from '../authentication/user.model';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthenticationService) { }
 
   // subscription = new Subscription();
-  user : User;
+  user: User;
 
 
   ngOnInit(): void {
