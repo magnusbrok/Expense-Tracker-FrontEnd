@@ -18,7 +18,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { ChangePasswordComponent } from './profile/change-password/change-password.component';
 import { BudgetCategoryComponent } from './budget/budget-category/budget-category.component';
 import {ExpenseListService} from './shared/expense-list.service';
-import {BudgetListService} from './shared/budget-list.service';
+import {BudgetPostListService} from './shared/budget-post-list.service';
+import { BudgetPostEditComponent } from './budget-post-edit/budget-post-edit.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {BudgetListService} from './shared/budget-list.service';
     ProfileComponent,
     ChangePasswordComponent,
     BudgetCategoryComponent,
-    DropdownDirective
+    DropdownDirective,
+    BudgetPostEditComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,7 @@ import {BudgetListService} from './shared/budget-list.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthenticationService, ExpenseListService, BudgetListService],
+  providers: [AuthenticationService, ExpenseListService, BudgetPostListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
