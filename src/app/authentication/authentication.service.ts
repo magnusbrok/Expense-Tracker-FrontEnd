@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {User} from './user.model';
 import {Subject} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthenticationService {
   userChanged = new Subject();
   private user = null;
 
-  constructor() {  }
+  constructor(private http : HttpClient) {  }
 
   getUser(): User {
     return this.user;
@@ -22,16 +23,13 @@ export class AuthenticationService {
   }
 
   logIn(username: string, password: string) {
-      if (username === 's173998' && password === 'kk29'){
-        this.setUser( new User(
-          username,
-          's173998@student.dtu.dk',
-          'ITØ',
-          'Siff',
-          'Ravn',
-          '****'
-        ));
-      }
+    this.http.post<User>(
+      'http://localhost:8080/login',
+      {username: username, password: password}
+    ).subscribe( user =>{
+      console.log(user);
+      this.setUser(user)
+    });
   }
 
   logout() {

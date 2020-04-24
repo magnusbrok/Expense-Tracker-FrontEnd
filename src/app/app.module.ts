@@ -18,7 +18,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { ChangePasswordComponent } from './profile/change-password/change-password.component';
 import { BudgetCategoryComponent } from './budget/budget-category/budget-category.component';
 import {ExpenseListService} from './shared/expense-list.service';
+import { HistorySelectedComponent } from './history/history-selected/history-selected.component';
 import {BudgetListService} from './shared/budget-list.service';
+import {AuthenticationGuard} from "./authentication/authentication.guard";
+import { FrontPageComponent } from './front-page/front-page.component';
 
 @NgModule({
   declarations: [
@@ -34,16 +37,17 @@ import {BudgetListService} from './shared/budget-list.service';
     ProfileComponent,
     ChangePasswordComponent,
     BudgetCategoryComponent,
-    DropdownDirective
+    DropdownDirective,
+    HistorySelectedComponent,
+    FrontPageComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule,
-    HttpClientModule
+    FormsModule
   ],
-  providers: [AuthenticationService, ExpenseListService, BudgetListService],
+  providers: [AuthenticationService, AuthenticationGuard, ExpenseListService, BudgetListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
