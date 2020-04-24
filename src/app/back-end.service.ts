@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BudgetModel} from "./budget/budget.model";
 import {BudgetListService} from "./shared/budget-list.service";
+import {AuthenticationService} from "./authentication/authentication.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class BackEndService {
 
   constructor(
     private http: HttpClient,
+    private authService : AuthenticationService,
     private budgetListService : BudgetListService
   ) { }
 
@@ -22,14 +24,17 @@ export class BackEndService {
   }
 
   getBudget(year : number, month : number){
-    let url = `${ this.domain }/${this.path}?year=${ year }&month=${ month }`;
+
+    const username = this.authService.getUser().username;
+    let url = `${ this.domain }/${username}/${this.path}?year=${ year }&month=${ month }`;
 
     return this.http.get<BudgetModel>(url);
   }
 
   createBudget(id : number){
+    const username = this.authService.getUser().username;
     let budget = this.budgetListService.getBudget(id);
-    let url = `${this.domain}//${this.path}`;
+    let url = `${ this.domain }/${username}/${this.path}`;
 
     this.http.post(
       url,
