@@ -4,7 +4,7 @@
     <table class="table table-hover">
       <thead>
       <tr>
-        <th scope="col">Budgetpost</th>
+        <th scope="col">Budget post</th>
         <th scope="col">amount</th>
       </tr>
       </thead>
@@ -14,12 +14,12 @@
           {{post.category}}
         </td>
         <td>
-          {{post.amount}}
+          {{post.amount}} kr
         </td>
       </tr>
       </tbody>
     </table>
-    <h2>Totalt budget for the month: {{currBudget.totalAmount}}</h2>
+    <h2>Totalt budget for the month: {{currBudget.totalAmount}} kr</h2>
   </div>
   <div class="col-auto mt-3">
     <button (click)="addBudgetPost()" class="btn btn-primary">Add budget post</button>

@@ -1,1 +1,47 @@
-<p>budget-post-edit works!</p>
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div class="row">
+
+    <div class="class col sm 4 form-group">
+      <label>Choose categories!</label>
+      <select
+        id="category"
+        name="category"
+        class="form-control"
+        ngModel
+        required> <!--Knappen skal enables når "tilføj budget" klikkes på i budget"[disabled]=[buttonDisabled] -->
+        <option value="Self love">Self love!</option>
+        <option value="PAAAARTY">PAAARTY</option>
+        <option value="Games">Games</option>
+        <option value="Create category">Create custom category!</option>
+      </select>
+    </div>
+    <div class="class col sm 4 form-group">
+      <div class="row">
+        <label> Categories budget!</label>
+        <div class="input-group">
+          <input
+            class="form-control"
+            ngModel
+            id="categoryBudget"
+            name="categoryBudget"
+            type="text"
+            required
+            pattern="^[1-9]+[0-9]*$">
+
+          <div class="input-group-btn">
+            <button
+              [disabled]="!f.valid"
+              class="btn btn-primary"
+              type="submit"> <!--Knappen skal enables når "tilføj budget" klikkes på i budget"[disabled]=[buttonDisabled] -->
+              add
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="help-block"
+        *ngIf="!f.valid && f.touched"> Please enter valid information for all the boxes</span>
+</form>
+
+
