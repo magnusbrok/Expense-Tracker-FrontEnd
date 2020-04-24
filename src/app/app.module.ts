@@ -18,7 +18,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { ChangePasswordComponent } from './profile/change-password/change-password.component';
 import { BudgetCategoryComponent } from './budget/budget-category/budget-category.component';
 import {ExpenseListService} from './shared/expense-list.service';
-import { HistorySelectedComponent } from './history/history-selected/history-selected.component';
 import {BudgetListService} from './shared/budget-list.service';
 import {AuthenticationGuard} from "./authentication/authentication.guard";
 import { FrontPageComponent } from './front-page/front-page.component';
@@ -38,7 +37,6 @@ import { FrontPageComponent } from './front-page/front-page.component';
     ChangePasswordComponent,
     BudgetCategoryComponent,
     DropdownDirective,
-    HistorySelectedComponent,
     FrontPageComponent
   ],
   imports: [
