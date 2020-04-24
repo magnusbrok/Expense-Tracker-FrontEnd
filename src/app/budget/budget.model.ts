@@ -6,6 +6,7 @@ export class Budget {
 
   constructor(public year: number, public month: number ) {
     this.updateTotalAmount();
+    this.date = new Date(year, month - 1);
   }
 
   updateTotalAmount() {

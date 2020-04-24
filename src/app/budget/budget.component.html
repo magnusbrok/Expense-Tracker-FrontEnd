@@ -1,6 +1,6 @@
 <div class="col">
   <div class="row mt-3">
-    <h2>Budget for month: {{currBudget.month}}</h2>
+    <h2>Budget for month: {{currBudget.date.toLocaleString('en-us', { month: 'long' })}}</h2>
     <table class="table table-hover">
       <thead>
       <tr>
