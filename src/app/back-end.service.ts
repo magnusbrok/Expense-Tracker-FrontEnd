@@ -34,7 +34,7 @@ export class BackEndService {
 
   createBudget(id: number) {
     const username = this.authService.getUser().username;
-    const budget = this.budgetPostListService.getBudget(id);
+    const budget = this.budgetPostListService.getCurrentBudget();
     const url = `${ this.domain }/${username}/${this.path}`;
 
     this.http.post(

@@ -4,6 +4,7 @@ import {Expense} from '../expenses/expense.model';
 import {Subscription} from 'rxjs';
 import {BudgetPost} from '../budget/budgetPost.model';
 import {BudgetPostListService} from '../shared/budget-post-list.service';
+import {BackEndService} from '../back-end.service';
 
 @Component({
   selector: 'app-budget-post-edit',
@@ -19,7 +20,7 @@ export class BudgetPostEditComponent implements OnInit, OnDestroy{
 
 
 
-  constructor(private budgetService: BudgetPostListService) { }
+  constructor(private budgetService: BudgetPostListService, private backEndService: BackEndService) { }
 
   ngOnInit(): void {
     this.subscription = this.budgetService.startedEditing.subscribe(
@@ -57,6 +58,10 @@ export class BudgetPostEditComponent implements OnInit, OnDestroy{
     this.budgetService.deleteBudgetPost(this.editedItemIndex);
     this.budgetService.budget.updateTotalAmount();
 
+  }
+
+  onSaveBudget() {
+    this.backEndService.createBudget(this.budgetService.getCurrentBudget().month);
   }
 
   ngOnDestroy(): void {

@@ -8,7 +8,7 @@
         class="form-control"
         ngModel
         required> <!--Knappen skal enables når "tilføj budget" klikkes på i budget"[disabled]=[buttonDisabled] -->
-      
+
     </div>
     <div class="class col sm 4 form-group">
       <div class="row">
@@ -31,7 +31,6 @@
                 <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -39,6 +38,10 @@
   </div>
   <span class="help-block"
         *ngIf="!f.valid && f.touched"> Please enter valid information for all the boxes</span>
+  <div class="text-left">
+    <button (click)="onSaveBudget()" class="btn btn-success">Save budget</button>
+  </div>
+
 </form>
 
 
