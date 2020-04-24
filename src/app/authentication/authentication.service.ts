@@ -11,7 +11,7 @@ export class AuthenticationService {
   userChanged = new Subject();
   private user = null;
 
-  constructor(private http : HttpClient) {  }
+  constructor(private http: HttpClient) {  }
 
   getUser(): User {
     return this.user;
@@ -24,11 +24,11 @@ export class AuthenticationService {
 
   logIn(username: string, password: string) {
     this.http.post<User>(
-      'http://localhost:8080/login',
-      {username: username, password: password}
-    ).subscribe( user =>{
+      'http://localhost:3344/login',
+      {username, password}
+    ).subscribe( user => {
       console.log(user);
-      this.setUser(user)
+      this.setUser(user);
     });
   }
 
