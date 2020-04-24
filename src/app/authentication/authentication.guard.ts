@@ -12,15 +12,14 @@ export class AuthenticationGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
-    let authenticated = !! this.authService.getUser();
+    const authenticated = !! this.authService.getUser();
 
     // this.authService.userChanged
     //   .subscribe((user : User) => {
     //     authenticated = !!user;
     //   });
 
-    if (authenticated) return true;
-    else return this.router.createUrlTree(['/authentication']);
+    if (authenticated) { return true; } else { return this.router.createUrlTree(['/authentication']); }
   }
 
 }

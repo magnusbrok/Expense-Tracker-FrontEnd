@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthenticationService} from "../authentication/authentication.service";
-import {Subscription} from "rxjs";
-import {User} from "../authentication/user.model";
-import {Router} from "@angular/router";
+import {AuthenticationService} from '../authentication/authentication.service';
+import {Subscription} from 'rxjs';
+import {User} from '../authentication/user.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,12 +12,12 @@ import {Router} from "@angular/router";
 export class HeaderComponent implements OnInit {
 
   username: string;
-  isAuthenticated : boolean;
+  isAuthenticated: boolean;
   subscription: Subscription;
 
   constructor(
     private authService: AuthenticationService,
-    private router : Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {

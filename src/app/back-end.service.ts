@@ -11,7 +11,7 @@ import {Budget} from './budget/budget.model';
 })
 export class BackEndService {
 
-  domain = `http://localhost:3344`;
+  domain = `http://dist.saluton.dk:3040`;
   path = `budget`;
 
   constructor(
@@ -23,7 +23,7 @@ export class BackEndService {
 
   fetchExpenses(username: string) {
     // TODO: change url to dist.saluton.dk
-    this.http.get<Expense[]>('http://localhost:3344/expenses/' + username).subscribe(fetchedExpenses => {
+    this.http.get<Expense[]>('http://dist.saluton.dk:3040/expenses/' + username).subscribe(fetchedExpenses => {
       this.expenseListService.setExpenses(fetchedExpenses);
     });
   }

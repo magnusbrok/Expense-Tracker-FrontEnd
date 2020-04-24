@@ -3,7 +3,6 @@ import {Expense} from './expense.model';
 import {ExpenseListService} from '../shared/expense-list.service';
 import {Subscription} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {User} from '../authentication/user.model';
 import {AuthenticationService} from '../authentication/authentication.service';
 import {BackEndService} from '../back-end.service';
 

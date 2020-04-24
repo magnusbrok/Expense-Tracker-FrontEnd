@@ -19,11 +19,10 @@ export class AuthenticationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.authService.userChanged.subscribe( (user : User) => {
+    this.authService.userChanged.subscribe( (user: User) => {
         this.isAuthenticated = !! user;
 
-        if (this.isAuthenticated) this.router.navigate(['/home-page']);
-        else this.error = 'An error occurred!';
+        if (this.isAuthenticated) { this.router.navigate(['/home-page']); } else { this.error = 'An error occurred!'; }
     });
   }
 
