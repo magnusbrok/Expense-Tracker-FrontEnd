@@ -9,27 +9,20 @@ export class BudgetPostListService {
   budgetList: Budget[] = [];
   budget: Budget = new Budget(2020, 5);
 
-  setPostList(posts: BudgetPost[]) {
-    this.budget.postList = posts;
-    this.budgetChanged.next(this.budget);
-  }
 
-  getPostList() {
-    return this.budget.postList.slice();
-  }
 
   getPost(index: number) {
-    return this.budget.postList[index];
+    return this.budget.posts[index];
   }
 
   addBudgetPost(post: BudgetPost) {
-    this.budget.postList.push(post);
+    this.budget.posts.push(post);
     this.budgetChanged.next(this.budget);
     console.log(post);
   }
 
   updateBudgetPost(index: number, newPost: BudgetPost) {
-    this.budget.postList[index] = newPost;
+    this.budget.posts[index] = newPost;
     this.budgetChanged.next(this.budget);
   }
 
@@ -38,7 +31,7 @@ export class BudgetPostListService {
   }
 
   deleteBudgetPost(index: number) {
-    this.budget.postList.splice(index, 1);
+    this.budget.posts.splice(index, 1);
     this.budgetChanged.next(this.budget);
   }
 

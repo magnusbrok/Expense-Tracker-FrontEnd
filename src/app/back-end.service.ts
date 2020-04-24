@@ -40,7 +40,7 @@ export class BackEndService {
     this.http.post(
       url,
       budget
-    );
+    ).subscribe();
   }
 
   updateBudget(id: number) {
