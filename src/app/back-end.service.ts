@@ -27,7 +27,7 @@ export class BackEndService {
   getBudget(year: number, month: number) {
 
     const username = this.authService.getUser().username;
-    const url = `${ this.domain }/${username}/${this.path}?year=${ year }&month=${ month }`;
+    const url = `${ this.domain }/${this.path}/${username}/${ year }/${ month }`;
 
     return this.http.get<Budget>(url);
   }
