@@ -35,6 +35,11 @@ export class BudgetPostListService {
     this.budgetChanged.next(this.budget);
   }
 
+  setBudget(budget: Budget) {
+    this.budget = budget;
+    this.budgetChanged.next(this.budget);
+  }
+
 
 
   getBudgets() {

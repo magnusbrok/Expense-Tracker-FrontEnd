@@ -5,6 +5,7 @@ import {Subscription} from 'rxjs';
 import {BudgetPostListService} from '../shared/budget-post-list.service';
 import {Budget} from './budget.model';
 import {BudgetPost} from './budgetPost.model';
+import {BackEndService} from '../back-end.service';
 @Component({
   selector: 'app-budget',
   templateUrl: './budget.component.html',
@@ -15,7 +16,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
   isHidden = true;
   isAddingPost = false;
   currBudget: Budget;
-  constructor(private budgetListService: BudgetPostListService) { }
+  constructor(private budgetListService: BudgetPostListService, private backEndService: BackEndService) { }
 
 
   ngOnInit(): void {
@@ -25,6 +26,10 @@ export class BudgetComponent implements OnInit, OnDestroy {
         this.currBudget = budget;
       }
     );
+    // TODO fix BAD PRACTISE!!!!! -Siff
+    this.backEndService.getBudget(2020, 6).subscribe((budget => {
+      this.budgetListService.setBudget(budget);
+    }));
   }
 
   show() {

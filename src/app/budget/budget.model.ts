@@ -7,7 +7,12 @@ export class Budget {
   constructor(public year: number, public month: number ) {
   }
 
-  updateTotalAmount() {
+  calcTotalAmount() {
+    let totalAmount = 0;
+    for (const post of this.posts) {
+      totalAmount += post.amount;
+    }
+    return totalAmount;
 
   }
 
