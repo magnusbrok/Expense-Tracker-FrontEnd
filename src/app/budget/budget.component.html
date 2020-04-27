@@ -24,34 +24,30 @@
       </table>
       <h4>Total budget for the month: {{totalAmount}} kr</h4>
     </div>
-    <div class="col-auto mt-3">
       <div class="row">
       <div class="class col sm 3 form-group">
         <app-budget-post-edit></app-budget-post-edit>
-      </div>
     </div>
   </div>
-
-
   <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <div class="row">
+    <div class="row" style="padding-top: 10px">
       <div class="class col sm 4 form-group">
           <label>Month</label>
           <select id="month" name="month" class="form-control"
                   required
                   ngModel>
-            <option value="1">Januar</option>
-            <option value="2">feb</option>
-            <option value="3">mar</option>
-            <option value="4">apr</option>
-            <option value="5">may</option>
-            <option value="6">june</option>
+            <option value="1">January</option>
+            <option value="2">F</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
             <option value="7">July</option>
             <option value="8">August</option>
             <option value="9">September</option>
-            <option value="10">Oktober</option>
-            <option value="11">november</option>
-            <option value="12">december</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
           </select>
       </div>
       <div class="class col sm 4 form-group">
@@ -64,7 +60,6 @@
               <option value="2020">2020</option>
               <option value="2021">2021</option>
               <option value="2022">2022</option>
-
             </select>
             <div class="input-group-btn">
               <div class="row">
@@ -77,7 +72,7 @@
         </div>
       </div>
     </div>
-    <span class="help-block"
+    <span class="alert alert-danger"
           *ngIf="!f.valid && f.touched"> Please enter valid information for all the boxes</span>
   </form>
 </div>
