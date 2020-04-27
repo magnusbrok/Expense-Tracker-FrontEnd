@@ -12,6 +12,7 @@ export class BudgetPostListService {
 
 
 
+
   getPost(index: number) {
     return this.budget.posts[index];
   }

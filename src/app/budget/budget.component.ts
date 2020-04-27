@@ -55,7 +55,20 @@ export class BudgetComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  onSubmit(f) {
+  /**
+   * Form for changing budget
+   * @param form the form received
+   */
+  onSubmit(form: NgForm) {
+    const value = form.value;
+    const newBudget = new Budget(value.year, value.month);
+
+    this.currBudget = newBudget;
+
+    this.backEndService.getBudget(this.currBudget.year, this.currBudget.month).subscribe((budget => {
+      this.budgetListService.setBudget(budget);
+    }));
+    form.reset();
 
   }
 
