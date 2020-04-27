@@ -21,7 +21,7 @@ export class ExpensesComponent implements OnInit, OnDestroy {
               private authenticationService: AuthenticationService, private backEndService: BackEndService) { }
 
   ngOnInit(): void {
-    this.backEndService.fetchExpenses(this.authenticationService.getUser().username);
+    this.backEndService.getAllExpenses(this.authenticationService.getUser().username);
     this.expenses = this.expenseListService.getExpenses();
     this.subscription = this.expenseListService.expensesChanged.subscribe(
       (expenses: Expense[]) => {
