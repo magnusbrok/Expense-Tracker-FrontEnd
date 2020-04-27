@@ -60,7 +60,14 @@ export class HomePageComponent implements OnInit {
             { label: 'Entertainment' , y: this.foodBudget },
             { label: 'Food' , y: 700 },
             { label: 'Electronics', y: 500 },
-            { label: 'Other', y: 300 }
+            { label: 'Other', y: 300 },
+            { label : 'test', y: 400},
+            { label: 'Other', y: 300 },
+            { label : 'test', y: 400},
+            { label: 'Other', y: 300 },
+            { label : 'test', y: 400},
+            { label: 'Other', y: 300 },
+            { label : 'test', y: 400}
           ]
         },
         {
@@ -72,8 +79,15 @@ export class HomePageComponent implements OnInit {
           dataPoints: [
             { y: 300 },
             { y:  this.foodExpense},
-            {y: 500 },
-            {y: 200 }
+            { y: 500 },
+            { y: 200 },
+            { y: 500},
+            { y: 200 },
+            { y: 500},
+            { y: 200 },
+            { y: 500},
+            { y: 200 },
+            { y: 500}
           ]
         }
         // TODO: handle over-/underconsumption
