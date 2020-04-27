@@ -16,7 +16,6 @@ const appRoutes: Routes = [
   { path: 'home-page', component: HomePageComponent, canActivate: [AuthenticationGuard] },
   { path: 'budget', component: BudgetComponent, canActivate: [AuthenticationGuard]},
   { path: 'history', component: HistoryComponent, canActivate: [AuthenticationGuard] },
-  { path: 'expenses', component: ExpensesComponent, canActivate: [AuthenticationGuard] },
   { path: 'authentication', component: AuthenticationComponent, },
   { path: 'user', component: ProfileComponent, canActivate: [AuthenticationGuard] },
 ];

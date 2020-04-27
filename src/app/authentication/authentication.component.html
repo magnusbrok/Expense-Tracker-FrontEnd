@@ -1,41 +1,43 @@
-<div class="card card-login">
-  <div class="card-header"><h4>Expense Tracker</h4></div>
-  <div class="card-body">
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+<div class="container d-flex justify-content-center">
+  <div class="card card-login">
+    <div class="card-header"><h4>Expense Tracker</h4></div>
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
 
-      <!-- Error message -->
-      <div class="alert alert-danger" *ngIf="error">
-        <p>{{ error }}</p>
-      </div>
+        <!-- Error message -->
+        <div class="alert alert-danger" *ngIf="error">
+          <p>{{ error }}</p>
+        </div>
 
-      <!-- Username Input-->
-      <div class="row form-group justify-content-center">
-        <input
-          type="text"
-          name="username"
-          ngModel
-          required
-          placeholder="Username">
-      </div>
-      <!-- Password input-->
-      <div class="row form-group justify-content-center">
-        <input
-          type="password"
-          name="password"
-          ngModel
-          required
-          placeholder="Password">
-      </div>
-      <div class="row justify-content-center">
-        <a routerLink="/history" class="card-link help-block">Forgot your password?</a> <!-- TODO edit router link -->
-      </div>
-      <!-- Button -->
-      <button
-        class="btn btn-success"
-        type="submit"
-        [disabled]="!f.valid"
-      >Login</button>
-    </form>
+        <!-- Username Input-->
+        <div class="row form-group justify-content-center">
+          <input
+            type="text"
+            name="username"
+            ngModel
+            required
+            placeholder="Username">
+        </div>
+        <!-- Password input-->
+        <div class="row form-group justify-content-center">
+          <input
+            type="password"
+            name="password"
+            ngModel
+            required
+            placeholder="Password">
+        </div>
+        <div class="row justify-content-center">
+          <a routerLink="/history" class="card-link help-block">Forgot your password?</a> <!-- TODO edit router link -->
+        </div>
+        <!-- Button -->
+        <button
+          class="btn btn-success"
+          type="submit"
+          [disabled]="!f.valid"
+        >Login</button>
+      </form>
+    </div>
+    <div class="card-footer"> Register new user</div>
   </div>
-  <div class="card-footer"> Register new user</div>
 </div>
