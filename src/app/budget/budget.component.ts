@@ -26,7 +26,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
     this.subscription = this.budgetListService.budgetChanged.subscribe(
       (budget: Budget) => {
         this.currBudget = budget;
-        this.currentMonth = new Date(this.currBudget.year, this.currBudget.month - 1).toLocaleString('default', { month: 'long' });
+        this.currentMonth = new Date(this.currBudget.year, this.currBudget.month - 1).toLocaleString('eng-us', { month: 'long' });
       }
     );
     // TODO fix BAD PRACTISE!!!!! -Siff
@@ -40,6 +40,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
   }
   addBudgetPost() {
     this.isAddingPost = !this.isAddingPost;
+    // this.totalAmount = this.currBudget.calcTotalAmount();
   }
   addBudget(form: NgForm) {
     console.log(form);

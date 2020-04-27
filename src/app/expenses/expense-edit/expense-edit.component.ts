@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import {ExpenseListService} from '../../shared/expense-list.service';
 import {Subscription} from 'rxjs';
 import {Expense} from '../expense.model';
+import {BudgetPostListService} from '../../shared/budget-post-list.service';
 
 @Component({
   selector: 'app-expense-edit',
@@ -15,8 +16,9 @@ export class ExpenseEditComponent implements OnInit, OnDestroy {
   editMode = false;
   editedItemIndex: number;
   editedItem: Expense;
+  categoryList: string[];
 
-  constructor(private expenseListService: ExpenseListService) {}
+  constructor(private expenseListService: ExpenseListService, private budgetListService: BudgetPostListService) {}
 
   ngOnInit(): void {
     this.subscription = this.expenseListService.startedEditing.subscribe(
@@ -32,6 +34,7 @@ export class ExpenseEditComponent implements OnInit, OnDestroy {
         });
       }
     );
+    this.categoryList = this.budgetListService.getCategoryList();
   }
 
   onSubmit(form: NgForm) {

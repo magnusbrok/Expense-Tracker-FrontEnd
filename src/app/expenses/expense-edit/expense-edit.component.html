@@ -20,10 +20,9 @@
           <select id="category" name="category" class="form-control"
             ngModel
             required
-            name="category">
-            <option value="Forkælelse">Forkælesle</option>
-            <option value="Druk">Druk</option>
-            <option value="Computerspil">Computerspil</option>
+            name="category" >
+            <option *ngFor="let category of categoryList"
+            [value]="category">{{category}}</option>
           </select>
         </div>
 

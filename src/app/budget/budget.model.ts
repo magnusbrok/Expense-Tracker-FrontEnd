@@ -9,10 +9,10 @@ export class Budget {
 
   calcTotalAmount() {
     let totalAmount = 0;
-    for (const post of this.posts) {
-      totalAmount += post.amount;
+    for (let post of this.posts) {
+      totalAmount += +(post.amount);
     }
-    return totalAmount;
+    return +totalAmount;
 
   }
 
