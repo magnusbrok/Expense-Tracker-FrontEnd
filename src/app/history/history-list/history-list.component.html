@@ -1,0 +1,56 @@
+<br>
+
+<div class="row hej mt-5">
+  <div class="col-lg-6">
+    <div class="card card-profile">
+      <div class="card-body">
+        <div class="col-sm-10 form-group">
+          <label for="category">Year:</label>
+          <select id="category" name="category" class="form-control" style="cursor: pointer;">
+            <option value="1">2018</option>
+            <option value="2">2019</option>
+            <option value="3">2020</option>
+            <option value="4">2021</option>
+            <option value="5">2022</option>
+            <option value="6">2023</option>
+          </select>
+        </div>
+        <h5>History of chosen year</h5>
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Payments</th>
+            <th scope="col">Payouts</th>
+            <th scope="col">Total</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let history of histories; let i = index">
+            <td>
+              {{history.month}}
+            </td>
+            <td>
+              {{history.payments}}
+            </td>
+            <td>
+              {{history.payouts}}
+            </td>
+            <td>
+              {{history.payments - history.payouts}}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+
+
+    <router-outlet></router-outlet>
+
+
+  </div>
+</div>
