@@ -10,7 +10,6 @@ import {HistoryService} from './history.service';
 })
 
 export class HistoryComponent implements OnInit{
-  selectedHistory: History;
 
   constructor() { }
 
