@@ -11,17 +11,19 @@ import {AppRoutingModule} from './app-routing.module';
 import { ExpenseEditComponent } from './expenses/expense-edit/expense-edit.component';
 import {FormsModule} from '@angular/forms';
 import { DropdownDirective } from './shared/dropdown.directive';
-import { HistoryComponent } from './history/history.component';
+import { HistoryListComponent } from './history/history-list/history-list.component';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthenticationService} from './authentication/authentication.service';
 import { ProfileComponent } from './profile/profile.component';
 import { ChangePasswordComponent } from './profile/change-password/change-password.component';
 import { BudgetCategoryComponent } from './budget/budget-category/budget-category.component';
 import {ExpenseListService} from './shared/expense-list.service';
-import {AuthenticationGuard} from "./authentication/authentication.guard";
+import {AuthenticationGuard} from './authentication/authentication.guard';
 import { FrontPageComponent } from './front-page/front-page.component';
 import {BudgetPostListService} from './shared/budget-post-list.service';
 import { BudgetPostEditComponent } from './budget-post-edit/budget-post-edit.component';
+import {HistoryStartComponent} from './history/history-start/history-start.component';
+import {HistoryService} from './history/history.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ import { BudgetPostEditComponent } from './budget-post-edit/budget-post-edit.com
     AuthenticationComponent,
     BudgetComponent,
     ExpensesComponent,
-    HistoryComponent,
+    HistoryListComponent,
     HomePageComponent,
     ExpenseEditComponent,
     DropdownDirective,
@@ -39,7 +41,8 @@ import { BudgetPostEditComponent } from './budget-post-edit/budget-post-edit.com
     BudgetCategoryComponent,
     DropdownDirective,
     FrontPageComponent,
-    BudgetPostEditComponent
+    BudgetPostEditComponent,
+    HistoryStartComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,7 @@ import { BudgetPostEditComponent } from './budget-post-edit/budget-post-edit.com
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthenticationService, AuthenticationGuard, ExpenseListService, BudgetPostListService],
+  providers: [AuthenticationService, AuthenticationGuard, ExpenseListService, BudgetPostListService, HistoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
