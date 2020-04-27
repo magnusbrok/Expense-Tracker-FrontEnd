@@ -1,6 +1,6 @@
 <div class="col">
   <div class="row mt-3">
-    <h2>Budget for: {{currentMonth}}</h2>
+    <h2>Budget for: {{currentMonth}} - {{currDate.getFullYear()}}</h2>
     <table class="table table-hover">
       <thead>
       <tr>
@@ -32,39 +32,53 @@
 </div>
 
 
-<div class="col-auto mt-3">
-  <div class="form-group">
-    <div class="text-left">
-      <div class="text-left">
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="row">
+      <div class="class col sm 4 form-group">
+          <label>Month</label>
+          <select id="month" name="month" class="form-control"
+                  required
+                  ngModel>
+            <option value="1">Januar</option>
+            <option value="2">feb</option>
+            <option value="3">mar</option>
+            <option value="4">apr</option>
+            <option value="5">may</option>
+            <option value="6">june</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">Oktober</option>
+            <option value="11">november</option>
+            <option value="12">december</option>
+          </select>
+      </div>
+      <div class="class col sm 4 form-group">
+        <div class="row">
+          <label>Year</label>
+          <div class="input-group">
+            <select id="year" name="year" class="form-control"
+                    required
+                    ngModel>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
 
-        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-          <div class="row">
-            <div class="class col sm 4 form-group">
-              <label>Choose categories!</label>
-              <input
-                id="category"
-                name="category"
-                class="form-control"
-                ngModel
-                required> <!--Knappen skal enables når "tilføj budget" klikkes på i budget"[disabled]=[buttonDisabled] -->
-
+            </select>
+            <div class="input-group-btn">
+              <div class="row">
+                <div class="col xs 12">
+                  <button class="btn btn-success" type="submit" [disabled]="!f.valid">Change budget</button>
+                </div>
+              </div>
             </div>
           </div>
-          <span class="help-block"
-                *ngIf="!f.valid && f.touched"> Please enter valid information for all the boxes</span>
-        </form>
-
-
-
-
-        <button (click)="show()" class="btn btn-primary">Create new budget</button>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-  <div class="col-xl-3">
-  </div>
-
+    <span class="help-block"
+          *ngIf="!f.valid && f.touched"> Please enter valid information for all the boxes</span>
+  </form>
 
 
 

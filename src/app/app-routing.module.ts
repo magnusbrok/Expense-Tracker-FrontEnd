@@ -10,6 +10,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {AuthenticationGuard} from './authentication/authentication.guard';
 import {FrontPageComponent} from './front-page/front-page.component';
 
+
 const appRoutes: Routes = [
   {path: '', component: FrontPageComponent},
   // {path: '', redirectTo: '/home-page', pathMatch: 'full'},
