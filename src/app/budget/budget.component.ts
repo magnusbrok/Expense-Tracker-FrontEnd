@@ -24,6 +24,8 @@ export class BudgetComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+    this.backEndService.getBudget(this.currDate.getFullYear(), this.currDate.getMonth() + 1);
+
     this.currBudget = this.budgetListService.getCurrentBudget();
     this.subscription = this.budgetListService.budgetChanged.subscribe(
       (budget: Budget) => {
@@ -31,10 +33,6 @@ export class BudgetComponent implements OnInit, OnDestroy {
         this.currentMonth = new Date(this.currBudget.year, this.currBudget.month - 1).toLocaleString('eng-us', { month: 'long' });
       }
     );
-    // TODO fix BAD PRACTISE!!!!! -Siff
-    this.backEndService.getBudget(this.currDate.getFullYear(), this.currDate.getMonth() + 1).subscribe((budget => {
-      this.budgetListService.setBudget(budget);
-    }));
   }
 
   show() {
@@ -65,9 +63,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
 
     this.currBudget = newBudget;
 
-    this.backEndService.getBudget(this.currBudget.year, this.currBudget.month).subscribe((budget => {
-      this.budgetListService.setBudget(budget);
-    }));
+    this.backEndService.getBudget(this.currBudget.year, this.currBudget.month);
     form.reset();
 
   }
