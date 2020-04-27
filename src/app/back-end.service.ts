@@ -13,7 +13,7 @@ export class BackEndService {
 
   domain = `http://localhost:3344`; // TODO: change url to dist.saluton.dk
   budget = `budget`;
-  expense = `expense`;
+  expense = `expenses`;
 
   constructor(
     private http: HttpClient,
@@ -23,8 +23,8 @@ export class BackEndService {
 
     ) { }
 
-  fetchExpenses(username: string) {
-    const url = `${ this.domain }/${this.expense}/${username}`;
+  getAllExpenses(username: string) {
+    const url = `${ this.domain }/${username}/${this.expense}`;
 
     this.http.get<Expense[]>(url)
       .subscribe(fetchedExpenses => {
@@ -32,24 +32,31 @@ export class BackEndService {
       });
   }
 
-  getExpenses(){
+  getExpenses(year: number, month: number) {
 
+    const username = this.authService.getUser().username;
+    const url = `${ this.domain }/${username}/${this.expense}/${ year }/${ month }`;
+
+    this.http.get<Expense[]>(url)
+      .subscribe(expenses => {
+        this.expenseListService.setExpenses(expenses);
+      });
   }
 
-  createExpense(){
+  updateExpense(year: number, month: number){
+    const username = this.authService.getUser().username;
+    const expenses = this.expenseListService.getExpenses();
+    const url = `${ this.domain }/${username}/${this.expense}/${ year }/${ month }`;
 
+    this.http.put(
+      url,
+      expenses
+    ).subscribe();
   }
 
-  updateExpense(){
-
-  }
-
-  DeleteExpense(){
-
-  }
-
-  getBudgetList() {
-    const url = `${ this.domain }/${this.budget}`;
+  getAllBudgets() {
+    const username = this.authService.getUser().username;
+    const url = `${ this.domain }/${username}${this.budget}`;
     return this.http.get<Budget>(url);
   }
 
@@ -64,7 +71,7 @@ export class BackEndService {
       });
   }
 
-  createBudget(id: number) {
+  updateBudget() {
     const username = this.authService.getUser().username;
     const budget = this.budgetPostListService.getCurrentBudget();
     const url = `${ this.domain }/${username}/${this.budget}`;
@@ -75,11 +82,4 @@ export class BackEndService {
     ).subscribe();
   }
 
-  updateBudget(id: number) {
-
-  }
-
-  deleteBudget(id: number) {
-
-  }
 }

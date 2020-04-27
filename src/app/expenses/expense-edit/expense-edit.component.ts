@@ -4,6 +4,7 @@ import {ExpenseListService} from '../../shared/expense-list.service';
 import {Subscription} from 'rxjs';
 import {Expense} from '../expense.model';
 import {BudgetPostListService} from '../../shared/budget-post-list.service';
+import {Budget} from '../../budget/budget.model';
 
 @Component({
   selector: 'app-expense-edit',
@@ -13,6 +14,7 @@ import {BudgetPostListService} from '../../shared/budget-post-list.service';
 export class ExpenseEditComponent implements OnInit, OnDestroy {
   @ViewChild('f', { static: false }) elForm: NgForm;
   subscription: Subscription;
+  budgetSub: Subscription;
   editMode = false;
   editedItemIndex: number;
   editedItem: Expense;
@@ -34,7 +36,10 @@ export class ExpenseEditComponent implements OnInit, OnDestroy {
         });
       }
     );
-    this.categoryList = this.budgetListService.getCategoryList();
+    this.budgetSub = this.budgetListService.budgetChanged.subscribe((budget: Budget) => {
+      this.categoryList = this.budgetListService.getCategoryList();
+      console.log(this.categoryList);
+    });
   }
 
   onSubmit(form: NgForm) {
