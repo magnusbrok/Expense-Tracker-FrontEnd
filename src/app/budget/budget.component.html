@@ -1,11 +1,11 @@
 <div class="col">
   <div class="row mt-3">
-    <h2>Budget for month: {{currentMonth}}</h2>
+    <h2>Budget for: {{currentMonth}}</h2>
     <table class="table table-hover">
       <thead>
       <tr>
         <th scope="col">Budget post</th>
-        <th scope="col">amount</th>
+        <th scope="col">Amount</th>
       </tr>
       </thead>
       <tbody>
@@ -21,33 +21,50 @@
       </tr>
       </tbody>
     </table>
-    <h2>Total budget for the month: {{totalAmount}} kr</h2>
+    <h4>Total budget for the month: {{totalAmount}} kr</h4>
   </div>
   <div class="col-auto mt-3">
-    <button (click)="addBudgetPost()" class="btn btn-primary">Add budget post</button>
-    <div class="row" *ngIf="isAddingPost">
+    <div class="row">
     <div class="class col sm 3 form-group">
       <app-budget-post-edit></app-budget-post-edit>
     </div>
   </div>
 </div>
-    <div class="col-auto mt-3">
-      <div class="form-group">
-        <div class="text-left">
-        <div class="text-left">
-          <button (click)="show()" class="btn btn-primary">Opret et nyt budget</button>
-        </div>
-        <div class="row mt-3">
-        <form (ngSubmit)="addBudget(budget)" #budget="ngForm"> <!--For at console.log-->
-        <div class="row" *ngIf="!isHidden">
-          <div class="class col sm 3 form-group">
-          <app-budget-category></app-budget-category>
-        </div>
-        </div>
+
+
+<div class="col-auto mt-3">
+  <div class="form-group">
+    <div class="text-left">
+      <div class="text-left">
+
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+          <div class="row">
+            <div class="class col sm 4 form-group">
+              <label>Choose categories!</label>
+              <input
+                id="category"
+                name="category"
+                class="form-control"
+                ngModel
+                required> <!--Knappen skal enables når "tilføj budget" klikkes på i budget"[disabled]=[buttonDisabled] -->
+
+            </div>
+          </div>
+          <span class="help-block"
+                *ngIf="!f.valid && f.touched"> Please enter valid information for all the boxes</span>
         </form>
-        </div>
+
+
+
+
+        <button (click)="show()" class="btn btn-primary">Create new budget</button>
       </div>
     </div>
+  </div>
+</div>
+  <div class="col-xl-3">
+  </div>
+
 
 
 
