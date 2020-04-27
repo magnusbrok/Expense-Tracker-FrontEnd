@@ -32,6 +32,22 @@ export class BackEndService {
       });
   }
 
+  getExpenses(){
+
+  }
+
+  createExpense(){
+
+  }
+
+  updateExpense(){
+
+  }
+
+  DeleteExpense(){
+
+  }
+
   getBudgetList() {
     const url = `${ this.domain }/${this.budget}`;
     return this.http.get<Budget>(url);
