@@ -32,19 +32,19 @@ export class BackEndService {
       });
   }
 
-  getExpenses(){
+  getExpenses() {
 
   }
 
-  createExpense(){
+  createExpense() {
 
   }
 
-  updateExpense(){
+  updateExpense() {
 
   }
 
-  DeleteExpense(){
+  DeleteExpense() {
 
   }
 

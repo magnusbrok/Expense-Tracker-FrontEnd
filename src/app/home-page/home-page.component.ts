@@ -3,6 +3,9 @@ import * as CanvasJS from './canvasjs.min';
 import {ExpenseListService} from '../shared/expense-list.service';
 import {Expense} from '../expenses/expense.model';
 import {Subscription} from 'rxjs';
+import {BudgetPostListService} from '../shared/budget-post-list.service';
+import {Budget} from '../budget/budget.model';
+import {BackEndService} from '../back-end.service';
 
 // TODO: get categories from method get category (or something alike)
 
@@ -15,19 +18,33 @@ import {Subscription} from 'rxjs';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private expenseListService: ExpenseListService) {}
+  constructor(private expenseListService: ExpenseListService,
+              private budgetListService: BudgetPostListService,
+              private backEndService: BackEndService) {}
   expenses: Expense[];
-  private subscription: Subscription;
+  private expenseSubscription: Subscription;
+  private budgetSubscription: Subscription;
+  currentMonth = 'ingenmåned';
+  currentBudget: Budget;
+  currentDate = new Date();
 
   foodBudget = 700;
   foodExpense =  0;
   ngOnInit() {
+    this.backEndService.getBudget(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1);
     this.expenses = this.expenseListService.getExpenses();
-    this.subscription = this.expenseListService.expensesChanged.subscribe(
+    this.expenseSubscription = this.expenseListService.expensesChanged.subscribe(
       (expenses: Expense[]) => {
         this.expenses = expenses;
       }
     );
+    this.budgetSubscription = this.budgetListService.budgetChanged.subscribe(
+      (budget: Budget) => {
+        this.currentBudget = budget;
+        this.currentMonth = new Date(this.currentBudget.year, this.currentBudget.month - 1).toLocaleString('eng-us', { month: 'long' });
+      }
+    );
+
     // TODO: Make sure the overconsumption is calculated correctly, and isnt hardcoded
     // TODO: get budged from budget service
     // TODO: handle if expense list is empty
@@ -36,9 +53,6 @@ export class HomePageComponent implements OnInit {
     }
     const chart = new CanvasJS.Chart('chartContainer', {
       animationEnabled: true,
-      title: {
-        text: 'Expenses This Month'
-      },
       axisY: {
         suffix: 'kr'
       },
