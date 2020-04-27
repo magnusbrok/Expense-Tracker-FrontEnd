@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs';
 
@@ -12,12 +12,14 @@ import {BackEndService} from '../back-end.service';
   styleUrls: ['./budget.component.css']
 })
 export class BudgetComponent implements OnInit, OnDestroy {
+  @ViewChild('f', { static: false }) budgetForm: NgForm;
   private subscription: Subscription;
   isHidden = true;
   isAddingPost = false;
   currBudget: Budget;
   totalAmount = 0;
   currentMonth = 'ingenmåned';
+  currDate: Date = new Date();
   constructor(private budgetListService: BudgetPostListService, private backEndService: BackEndService) { }
 
 
@@ -30,7 +32,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
       }
     );
     // TODO fix BAD PRACTISE!!!!! -Siff
-    this.backEndService.getBudget(2020, 6).subscribe((budget => {
+    this.backEndService.getBudget(this.currDate.getFullYear(), this.currDate.getMonth() + 1).subscribe((budget => {
       this.budgetListService.setBudget(budget);
     }));
   }
@@ -51,6 +53,10 @@ export class BudgetComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  onSubmit(f) {
+
   }
 
 }
