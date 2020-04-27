@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+<form (ngSubmit)="onSubmit(f)" #f="ngForm" style="padding-top: 50px">
   <div class="row">
     <div class="class col sm 4 form-group">
       <label>Category</label>
@@ -7,8 +7,7 @@
         name="category"
         class="form-control"
         ngModel
-        required> <!--Knappen skal enables når "tilføj budget" klikkes på i budget"[disabled]=[buttonDisabled] -->
-
+        required>
     </div>
     <div class="class col sm 4 form-group">
       <div class="row">
@@ -35,8 +34,8 @@
       </div>
     </div>
   </div>
-  <span class="help-block"
-        *ngIf="!f.valid && f.touched"> Please enter valid information for all the boxes</span>
+  <span class="alert alert-danger"
+        *ngIf="!f.valid && f.touched" > Please enter valid information for your Budget Post!</span>
 </form>
 <div class="text-left">
   <button (click)="onSaveBudget()" class="btn btn-primary">Save budget</button>
