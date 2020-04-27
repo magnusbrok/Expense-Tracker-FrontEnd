@@ -27,6 +27,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule} from '@angular/material/core';
+import { HistoryComponent} from './history/history.component';
+import {HistoryItemComponent} from './history/history-list/history-item/history-item.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import {MatNativeDateModule} from '@angular/material/core';
     DropdownDirective,
     FrontPageComponent,
     BudgetPostEditComponent,
-    HistoryStartComponent
+    HistoryStartComponent,
+    HistoryComponent,
+    HistoryItemComponent
   ],
   imports: [
     BrowserModule,
