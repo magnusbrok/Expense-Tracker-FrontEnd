@@ -16,7 +16,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {AuthenticationService} from './authentication/authentication.service';
 import { ProfileComponent } from './profile/profile.component';
 import { ChangePasswordComponent } from './profile/change-password/change-password.component';
-import { BudgetCategoryComponent } from './budget/budget-category/budget-category.component';
 import {ExpenseListService} from './shared/expense-list.service';
 import {AuthenticationGuard} from './authentication/authentication.guard';
 import { FrontPageComponent } from './front-page/front-page.component';
@@ -24,6 +23,10 @@ import {BudgetPostListService} from './shared/budget-post-list.service';
 import { BudgetPostEditComponent } from './budget-post-edit/budget-post-edit.component';
 import {HistoryStartComponent} from './history/history-start/history-start.component';
 import {HistoryService} from './history/history.service';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,6 @@ import {HistoryService} from './history/history.service';
     DropdownDirective,
     ProfileComponent,
     ChangePasswordComponent,
-    BudgetCategoryComponent,
     DropdownDirective,
     FrontPageComponent,
     BudgetPostEditComponent,
@@ -49,7 +51,11 @@ import {HistoryService} from './history/history.service';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NoopAnimationsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule
   ],
   providers: [AuthenticationService, AuthenticationGuard, ExpenseListService, BudgetPostListService, HistoryService],
   bootstrap: [AppComponent]
