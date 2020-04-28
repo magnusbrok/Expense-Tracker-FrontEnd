@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {User} from './user.model';
 import {Subject, throwError} from 'rxjs';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {catchError} from "rxjs/operators";
+import {catchError, tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -30,10 +30,10 @@ export class AuthenticationService {
       {username, password}
     )
       .pipe(
-        catchError(errorRes => {
-          let errorMsg = errorRes.error;
-          return throwError(errorMsg);
-        })
+        catchError(this.errorHandle),
+        tap( response => {
+            if(response.username) this.setUser(response);
+          })
       );
   }
 
@@ -43,5 +43,10 @@ export class AuthenticationService {
 
   changePassword(currentPassword: string, newPassword: string, confirmNew: string) {
 
+  }
+
+  private errorHandle(errorRes : HttpErrorResponse){
+    let errorMsg = errorRes.error;
+    return throwError(errorMsg);
   }
 }
