@@ -71,10 +71,10 @@ export class BackEndService {
       });
   }
 
-  updateBudget(year: number, month: number) {
+  updateBudget() {
     const username = this.authService.getUser().username;
     const budget = this.budgetPostListService.getCurrentBudget();
-    const url = `${ this.domain }/${username}/${this.budget}/${ year }/${ month }`;
+    const url = `${ this.domain }/${username}/${this.budget}`;
 
     this.http.post(
       url,

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import {User} from './user.model';
-import {Subject, throwError} from 'rxjs';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {catchError, tap} from "rxjs/operators";
+import {Subject} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -24,17 +23,13 @@ export class AuthenticationService {
   }
 
   logIn(username: string, password: string) {
-    return this.http.post<User>(
-      // TODO: change to dist.saluton.dk
-      ' http://localhost:3344/login',
+    this.http.post<User>(
+      'http://localhost:3344/login',
       {username, password}
-    )
-      .pipe(
-        catchError(this.errorHandle),
-        tap( response => {
-            if(response.username) this.setUser(response);
-          })
-      );
+    ).subscribe( user => {
+      console.log(user);
+      this.setUser(user);
+    });
   }
 
   logout() {
@@ -43,10 +38,5 @@ export class AuthenticationService {
 
   changePassword(currentPassword: string, newPassword: string, confirmNew: string) {
 
-  }
-
-  private errorHandle(errorRes : HttpErrorResponse){
-    let errorMsg = errorRes.error;
-    return throwError(errorMsg);
   }
 }
