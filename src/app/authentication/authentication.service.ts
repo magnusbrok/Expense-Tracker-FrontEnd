@@ -24,7 +24,8 @@ export class AuthenticationService {
 
   logIn(username: string, password: string) {
     this.http.post<User>(
-      'http://localhost:3344/login',
+      // TODO: change to dist.saluton.dk
+      'http://dist.saluton.dk:3344/login',
       {username, password}
     ).subscribe( user => {
       console.log(user);
