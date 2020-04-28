@@ -58,7 +58,7 @@ export class BudgetPostEditComponent implements OnInit, OnDestroy{
   }
 
   onSaveBudget() {
-    // this.backEndService.createBudget(this.budgetService.getCurrentBudget().month);
+    this.backEndService.updateBudget();
   }
 
   ngOnDestroy(): void {
