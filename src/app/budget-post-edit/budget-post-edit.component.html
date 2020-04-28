@@ -1,6 +1,6 @@
-<form (ngSubmit)="onSubmit(f)" #f="ngForm" style="padding-top: 50px">
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
   <div class="row">
-    <div class="class col sm 4 form-group">
+    <div class="col-sm-3 form-group">
       <label>Category</label>
       <input
         id="category"
@@ -9,7 +9,7 @@
         ngModel
         required>
     </div>
-    <div class="class col sm 4 form-group">
+    <div class="col-sm-4 form-group">
       <div class="row">
         <label>Amount</label>
         <div class="input-group">
@@ -34,11 +34,13 @@
       </div>
     </div>
   </div>
+  <div style="padding-bottom: 15px">
   <span class="alert alert-danger"
         *ngIf="!f.valid && f.touched" > Please enter valid information for your Budget Post!</span>
+  </div>
 </form>
 <div class="text-left">
-  <button (click)="onSaveBudget()" class="btn btn-primary">Save budget</button>
+  <button [style.background-color]="toogle ? 'blue' : 'green'" (click)="onSaveBudget()" class="btn btn-primary">{{status}}</button>
 </div>
 
 

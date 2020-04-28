@@ -20,24 +20,29 @@
             {{post.amount}} kr
           </td>
         </tr>
+        <tr>
+          <th scope="col">Total budget for the month:</th>
+          <th scope="col">{{totalAmount}} kr</th>
+        </tr>
         </tbody>
       </table>
-      <h4>Total budget for the month: {{totalAmount}} kr</h4>
     </div>
-      <div class="row">
+    <div class="card card-profile" style="padding-bottom: 15px">
+      <div class="card-body">
+      <div class="row mt-3">
       <div class="class col sm 3 form-group">
         <app-budget-post-edit></app-budget-post-edit>
     </div>
   </div>
   <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <div class="row" style="padding-top: 10px">
-      <div class="class col sm 4 form-group">
+    <div class="row" style="padding-top: 15px">
+      <div class="col-sm-3 form-group">
           <label>Month</label>
           <select id="month" name="month" class="form-control"
                   required
                   ngModel>
             <option value="1">January</option>
-            <option value="2">F</option>
+            <option value="2">February</option>
             <option value="3">March</option>
             <option value="4">April</option>
             <option value="5">May</option>
@@ -50,7 +55,7 @@
             <option value="12">December</option>
           </select>
       </div>
-      <div class="class col sm 4 form-group">
+      <div class="col-sm-4 form-group">
         <div class="row">
           <label>Year</label>
           <div class="input-group">
@@ -72,10 +77,13 @@
         </div>
       </div>
     </div>
+    <div style="padding-bottom: 20px">
     <span class="alert alert-danger"
           *ngIf="!f.valid && f.touched"> Please enter valid information for all the boxes</span>
+    </div>
   </form>
 </div>
+    </div></div>
 
 
 
