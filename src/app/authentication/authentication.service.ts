@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {User} from './user.model';
-import {Subject} from 'rxjs';
+import {Subject, throwError} from 'rxjs';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {catchError} from "rxjs/operators";
 
@@ -28,7 +28,13 @@ export class AuthenticationService {
       // TODO: change to dist.saluton.dk
       ' http://localhost:3344/login',
       {username, password}
-    );
+    )
+      .pipe(
+        catchError(errorRes => {
+          let errorMsg = errorRes.error;
+          return throwError(errorMsg);
+        })
+      );
   }
 
   logout() {

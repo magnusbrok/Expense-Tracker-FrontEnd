@@ -40,7 +40,7 @@ export class AuthenticationComponent implements OnInit {
         },
         error => {
           console.log(error);
-          this.error = error
+          this.error = error;
         }
       );
     form.reset();
