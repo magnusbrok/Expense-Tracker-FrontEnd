@@ -1,6 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { History } from '../history.model';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {HistoryService} from '../history.service';
 
 @Component({
@@ -10,7 +10,7 @@ import {HistoryService} from '../history.service';
 })
 export class HistoryListComponent implements OnInit {
   id: number;
-
+  selectedHistory: History;
   histories: History[];
 
   constructor(private historyService: HistoryService, private route: ActivatedRoute) {

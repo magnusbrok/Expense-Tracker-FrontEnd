@@ -1,5 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { History} from '../history.model';
+import { Component } from '@angular/core';
 
 
 @Component({
