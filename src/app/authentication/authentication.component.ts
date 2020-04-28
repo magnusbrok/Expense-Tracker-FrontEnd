@@ -31,7 +31,18 @@ export class AuthenticationComponent implements OnInit {
     console.log(form);
     const value = form.value;
 
-    this.authService.logIn(value.username, value.password);
+    this.authService.logIn(value.username, value.password)
+      .subscribe(
+        user => {
+          console.log(user);
+          // this.setUser(user);
+          this.router.navigate(['/home-page'])
+        },
+        error => {
+          console.log(error);
+          this.error = error;
+        }
+      );
     form.reset();
   }
 }

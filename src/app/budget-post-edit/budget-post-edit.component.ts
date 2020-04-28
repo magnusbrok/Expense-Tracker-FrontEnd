@@ -20,8 +20,8 @@ export class BudgetPostEditComponent implements OnInit, OnDestroy{
   toogle = true;
   status = 'Save Budget';
 
-  constructor(private budgetService: BudgetPostListService, private backEndService: BackEndService) {
-  }
+
+  constructor(private budgetService: BudgetPostListService, private backEndService: BackEndService) { }
 
   ngOnInit(): void {
     this.subscription = this.budgetService.startedEditing.subscribe(
@@ -63,6 +63,7 @@ export class BudgetPostEditComponent implements OnInit, OnDestroy{
   }
 
   onSaveBudget() {
+    //this.backEndService.updateBudget(this.budgetService.getCurrentBudget().year, this.budgetService.getCurrentBudget().month);
     this.backEndService.updateBudget();
     this.toogle = !this.toogle;
     this.status = this.toogle ? 'Save Budget' : 'Saved Budget!';
@@ -71,5 +72,5 @@ export class BudgetPostEditComponent implements OnInit, OnDestroy{
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-}
 
+}
