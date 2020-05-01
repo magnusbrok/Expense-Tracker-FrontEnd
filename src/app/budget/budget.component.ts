@@ -16,17 +16,18 @@ export class BudgetComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   isHidden = true;
   isAddingPost = false;
-  currBudget: Budget;
   totalAmount = 0;
-  currentMonth = 'ingenmåned';
+  currentMonth = 'loading';
   currDate: Date = new Date();
+  currBudget: Budget = new Budget(this.currDate.getFullYear(), this.currDate.getMonth());
+
   constructor(private budgetListService: BudgetPostListService, private backEndService: BackEndService) { }
 
-
   ngOnInit(): void {
-    this.backEndService.getBudget(this.currDate.getFullYear(), this.currDate.getMonth() + 1);
 
     this.currBudget = this.budgetListService.getCurrentBudget();
+    this.currentMonth = new Date(this.currBudget.year, this.currBudget.month - 1).toLocaleString('eng-us', { month: 'long' });
+
     this.subscription = this.budgetListService.budgetChanged.subscribe(
       (budget: Budget) => {
         this.currBudget = budget;

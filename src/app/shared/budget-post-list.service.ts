@@ -42,8 +42,8 @@ export class BudgetPostListService {
 
   setBudget(budget: Budget) {
     this.budget = budget;
-    this.budgetChanged.next(this.budget);
     this.updateCategoryList();
+    this.budgetChanged.next(this.budget);
 
   }
 
@@ -66,6 +66,5 @@ export class BudgetPostListService {
     for (const post of this.budget.posts) {
       this.categoryList.push(post.category.toString());
     }
-
   }
 }

@@ -6,6 +6,5 @@ export class Budget {
 
   constructor(public year: number, public month: number ) {
   }
-  
 
 }

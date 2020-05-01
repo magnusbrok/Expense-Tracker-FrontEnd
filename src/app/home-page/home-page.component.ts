@@ -24,14 +24,21 @@ export class HomePageComponent implements OnInit {
   expenses: Expense[];
   private expenseSubscription: Subscription;
   private budgetSubscription: Subscription;
-  currentMonth = 'ingenmåned';
-  currentBudget: Budget;
+  currentMonth = 'loading';
   currentDate = new Date();
+  currentBudget: Budget = new Budget(this.currentDate.getFullYear(), this.currentDate.getMonth());
+  firstTimeOpening = true;
 
   foodBudget = 700;
   foodExpense =  0;
   ngOnInit() {
-    this.backEndService.getBudget(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1);
+    if (this.firstTimeOpening) {
+      this.backEndService.getBudget(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1);
+      this.backEndService.getExpenses(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1);
+      this.firstTimeOpening = false;
+    }
+    // this.backEndService.getBudget(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1);
+    this.currentBudget = this.budgetListService.getCurrentBudget();
     this.expenses = this.expenseListService.getExpenses();
     this.expenseSubscription = this.expenseListService.expensesChanged.subscribe(
       (expenses: Expense[]) => {
