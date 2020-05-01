@@ -49,6 +49,7 @@ export class HomePageComponent implements OnInit {
       (budget: Budget) => {
         this.currentBudget = budget;
         this.currentMonth = new Date(this.currentBudget.year, this.currentBudget.month - 1).toLocaleString('eng-us', { month: 'long' });
+        this.loadChart();
       }
     );
 
@@ -58,9 +59,19 @@ export class HomePageComponent implements OnInit {
     if  (this.expenses.length > 0) {
     this.foodExpense = this.expenseListService.getExpense(0).amount - this.foodBudget;
     }
-    this.loadChart();
   }
+
   loadChart() {
+    const chartBudget = [];
+    const chartExpenses = [];
+    for (const budgetPost of this.currentBudget.posts) {
+      chartBudget.push({label: budgetPost.category, y: budgetPost.amount});
+    }
+
+    for (const expense of this.expenses) {
+      chartExpenses.push({y: expense.amount});
+    }
+
     const chart = new CanvasJS.Chart('chartContainer', {
       animationEnabled: true,
       axisY: {
@@ -80,19 +91,7 @@ export class HomePageComponent implements OnInit {
         showInLegend: true,
         xValueFormatString: '######################',
         yValueFormatString: '### "kr"',
-        dataPoints: [
-          { label: 'Entertainment' , y: this.foodBudget },
-          { label: 'Food' , y: 700 },
-          { label: 'Electronics', y: 500 },
-          { label: 'Other', y: 300 },
-          { label : 'test', y: 400},
-          { label: 'Other', y: 300 },
-          { label : 'test', y: 400},
-          { label: 'Other', y: 300 },
-          { label : 'test', y: 400},
-          { label: 'Other', y: 300 },
-          { label : 'test', y: 400}
-        ]
+        dataPoints: chartBudget
       },
         {
           type: 'stackedColumn',
@@ -100,19 +99,7 @@ export class HomePageComponent implements OnInit {
           showInLegend: true,
           xValueFormatString: '#########################',
           yValueFormatString: '### "kr"',
-          dataPoints: [
-            { y: 300 },
-            { y:  this.foodExpense},
-            { y: 500 },
-            { y: 200 },
-            { y: 500},
-            { y: 200 },
-            { y: 500},
-            { y: 200 },
-            { y: 500},
-            { y: 200 },
-            { y: 500}
-          ]
+          dataPoints: chartExpenses
         }
         // TODO: handle over-/underconsumption
       ]
