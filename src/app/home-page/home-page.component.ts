@@ -51,6 +51,9 @@ export class HomePageComponent implements OnInit {
     if  (this.expenses.length > 0) {
     this.foodExpense = this.expenseListService.getExpense(0).amount - this.foodBudget;
     }
+    this.loadChart();
+  }
+  loadChart() {
     const chart = new CanvasJS.Chart('chartContainer', {
       animationEnabled: true,
       axisY: {
@@ -65,25 +68,25 @@ export class HomePageComponent implements OnInit {
         horizontalAlign: 'right'
       },
       data: [{
-          type: 'stackedColumn',
-          name: 'Budget',
-          showInLegend: true,
-          xValueFormatString: '######################',
-          yValueFormatString: '### "kr"',
-          dataPoints: [
-            { label: 'Entertainment' , y: this.foodBudget },
-            { label: 'Food' , y: 700 },
-            { label: 'Electronics', y: 500 },
-            { label: 'Other', y: 300 },
-            { label : 'test', y: 400},
-            { label: 'Other', y: 300 },
-            { label : 'test', y: 400},
-            { label: 'Other', y: 300 },
-            { label : 'test', y: 400},
-            { label: 'Other', y: 300 },
-            { label : 'test', y: 400}
-          ]
-        },
+        type: 'stackedColumn',
+        name: 'Budget',
+        showInLegend: true,
+        xValueFormatString: '######################',
+        yValueFormatString: '### "kr"',
+        dataPoints: [
+          { label: 'Entertainment' , y: this.foodBudget },
+          { label: 'Food' , y: 700 },
+          { label: 'Electronics', y: 500 },
+          { label: 'Other', y: 300 },
+          { label : 'test', y: 400},
+          { label: 'Other', y: 300 },
+          { label : 'test', y: 400},
+          { label: 'Other', y: 300 },
+          { label : 'test', y: 400},
+          { label: 'Other', y: 300 },
+          { label : 'test', y: 400}
+        ]
+      },
         {
           type: 'stackedColumn',
           name: 'Overconsumption',
@@ -105,7 +108,7 @@ export class HomePageComponent implements OnInit {
           ]
         }
         // TODO: handle over-/underconsumption
-        ]
+      ]
     });
     chart.render();
   }
