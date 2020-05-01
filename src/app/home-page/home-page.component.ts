@@ -7,10 +7,6 @@ import {BudgetPostListService} from '../shared/budget-post-list.service';
 import {Budget} from '../budget/budget.model';
 import {BackEndService} from '../back-end.service';
 
-// TODO: get categories from method get category (or something alike)
-
-// categories are placeholder
-
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -26,12 +22,9 @@ export class HomePageComponent implements OnInit {
   private budgetSubscription: Subscription;
   currentMonth = 'loading';
   currentDate = new Date();
-  currentBudget: Budget = new Budget(this.currentDate.getFullYear(), this.currentDate.getMonth());
+  currentBudget: Budget = new Budget(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1);
   chartBudget = [];
   chartExpenses = [];
-
-  foodBudget = 700;
-  foodExpense =  0;
   ngOnInit() {
     if (this.backEndService.firstTimeLogon === true) {
       this.backEndService.getBudget(this.currentBudget.year, this.currentBudget.month);
@@ -61,13 +54,22 @@ export class HomePageComponent implements OnInit {
   }
 
   loadChart() {
+    let totalExpense = 0;
     this.chartBudget = [];
     this.chartExpenses = [];
     for (const budgetPost of this.currentBudget.posts) {
+      totalExpense = 0;
       this.chartBudget.push({label: budgetPost.category, y: budgetPost.amount});
-    }
-    for (const expense of this.expenses) {
-      this.chartExpenses.push({y: expense.amount});
+      for (const expense of this.expenses) {
+        if (expense.category === budgetPost.category) {
+          totalExpense += expense.amount;
+        }
+      }
+      if (totalExpense > budgetPost.amount) {
+        this.chartExpenses.push({y: totalExpense - budgetPost.amount});
+      } else {
+        this.chartExpenses.push({y: 0});
+      }
     }
 
     const chart = new CanvasJS.Chart('chartContainer', {
@@ -99,7 +101,6 @@ export class HomePageComponent implements OnInit {
           yValueFormatString: '### "kr"',
           dataPoints: this.chartExpenses
         }
-        // TODO: handle over-/underconsumption
       ]
     });
     chart.render();
