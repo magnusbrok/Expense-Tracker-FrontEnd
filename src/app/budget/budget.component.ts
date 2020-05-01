@@ -65,6 +65,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
     this.currBudget = newBudget;
 
     this.backEndService.getBudget(this.currBudget.year, this.currBudget.month);
+    this.backEndService.getExpenses(this.currBudget.year, this.currBudget.month);
     form.reset();
 
   }
