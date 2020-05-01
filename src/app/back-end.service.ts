@@ -43,7 +43,7 @@ export class BackEndService {
       });
   }
 
-  updateExpense(year: number, month: number){
+  updateExpense(year: number, month: number) {
     const username = this.authService.getUser().username;
     const expenses = this.expenseListService.getExpenses();
     const url = `${ this.domain }/${username}/${this.expense}/${ year }/${ month }`;
