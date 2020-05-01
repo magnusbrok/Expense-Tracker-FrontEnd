@@ -28,6 +28,8 @@ export class HomePageComponent implements OnInit {
   currentDate = new Date();
   currentBudget: Budget = new Budget(this.currentDate.getFullYear(), this.currentDate.getMonth());
   firstTimeOpening = true;
+  chartBudget = [];
+  chartExpenses = [];
 
   foodBudget = 700;
   foodExpense =  0;
@@ -43,6 +45,7 @@ export class HomePageComponent implements OnInit {
     this.expenseSubscription = this.expenseListService.expensesChanged.subscribe(
       (expenses: Expense[]) => {
         this.expenses = expenses;
+        this.loadChart();
       }
     );
     this.budgetSubscription = this.budgetListService.budgetChanged.subscribe(
@@ -62,14 +65,13 @@ export class HomePageComponent implements OnInit {
   }
 
   loadChart() {
-    const chartBudget = [];
-    const chartExpenses = [];
+    this.chartBudget = [];
+    this.chartExpenses = [];
     for (const budgetPost of this.currentBudget.posts) {
-      chartBudget.push({label: budgetPost.category, y: budgetPost.amount});
+      this.chartBudget.push({label: budgetPost.category, y: budgetPost.amount});
     }
-
     for (const expense of this.expenses) {
-      chartExpenses.push({y: expense.amount});
+      this.chartExpenses.push({y: expense.amount});
     }
 
     const chart = new CanvasJS.Chart('chartContainer', {
@@ -91,7 +93,7 @@ export class HomePageComponent implements OnInit {
         showInLegend: true,
         xValueFormatString: '######################',
         yValueFormatString: '### "kr"',
-        dataPoints: chartBudget
+        dataPoints: this.chartBudget
       },
         {
           type: 'stackedColumn',
@@ -99,7 +101,7 @@ export class HomePageComponent implements OnInit {
           showInLegend: true,
           xValueFormatString: '#########################',
           yValueFormatString: '### "kr"',
-          dataPoints: chartExpenses
+          dataPoints: this.chartExpenses
         }
         // TODO: handle over-/underconsumption
       ]
