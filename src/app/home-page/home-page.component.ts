@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as CanvasJS from './canvasjs.min';
 import {ExpenseListService} from '../shared/expense-list.service';
 import {Expense} from '../expenses/expense.model';
@@ -12,7 +12,7 @@ import {BackEndService} from '../back-end.service';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, OnDestroy {
 
   constructor(private expenseListService: ExpenseListService,
               private budgetListService: BudgetPostListService,
@@ -104,5 +104,9 @@ export class HomePageComponent implements OnInit {
       ]
     });
     chart.render();
+  }
+  ngOnDestroy(): void {
+    this.budgetSubscription.unsubscribe();
+    this.expenseSubscription.unsubscribe();
   }
   }

@@ -24,7 +24,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
   constructor(private budgetListService: BudgetPostListService, private backEndService: BackEndService) { }
 
   ngOnInit(): void {
-
+    this.calcTotalAmount();
     this.currBudget = this.budgetListService.getCurrentBudget();
     this.currentMonth = new Date(this.currBudget.year, this.currBudget.month - 1).toLocaleString('eng-us', { month: 'long' });
 
@@ -32,6 +32,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
       (budget: Budget) => {
         this.currBudget = budget;
         this.currentMonth = new Date(this.currBudget.year, this.currBudget.month - 1).toLocaleString('eng-us', { month: 'long' });
+        this.calcTotalAmount();
       }
     );
   }
@@ -68,6 +69,13 @@ export class BudgetComponent implements OnInit, OnDestroy {
     this.backEndService.getExpenses(this.currBudget.year, this.currBudget.month);
     form.reset();
 
+  }
+
+  calcTotalAmount() {
+    this.totalAmount = 0;
+    for (const budgetPost of this.budgetListService.getCurrentBudget().posts) {
+      this.totalAmount += budgetPost.amount;
+    }
   }
 
 }
