@@ -7,8 +7,9 @@ export class BudgetPostListService {
   budgetChanged = new Subject<Budget>();
   startedEditing = new Subject<number>();
   budgetList: Budget[] = [];
-  budget: Budget;
-  categoryList: string[];
+  date = new Date();
+  budget: Budget = new Budget(this.date.getFullYear(), this.date.getMonth() + 1);
+  categoryList: string[] = [];
 
 
 

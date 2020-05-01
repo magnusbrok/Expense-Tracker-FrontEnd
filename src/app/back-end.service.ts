@@ -14,6 +14,7 @@ export class BackEndService {
   domain = `http://localhost:3344`; // TODO: change url to dist.saluton.dk
   budget = `budget`;
   expense = `expenses`;
+  firstTimeLogon = true;
 
   constructor(
     private http: HttpClient,

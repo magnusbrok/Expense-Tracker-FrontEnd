@@ -27,24 +27,26 @@ export class HomePageComponent implements OnInit {
   currentMonth = 'loading';
   currentDate = new Date();
   currentBudget: Budget = new Budget(this.currentDate.getFullYear(), this.currentDate.getMonth());
-  firstTimeOpening = true;
   chartBudget = [];
   chartExpenses = [];
 
   foodBudget = 700;
   foodExpense =  0;
   ngOnInit() {
-    if (this.firstTimeOpening) {
-      this.backEndService.getBudget(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1);
-      this.backEndService.getExpenses(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1);
-      this.firstTimeOpening = false;
-    }
-    // this.backEndService.getBudget(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1);
+    if (this.backEndService.firstTimeLogon === true) {
+      this.backEndService.getBudget(this.currentBudget.year, this.currentBudget.month);
+      this.backEndService.getExpenses(this.currentBudget.year, this.currentBudget.month);
+      this.backEndService.firstTimeLogon = false;
+    } else {
     this.currentBudget = this.budgetListService.getCurrentBudget();
     this.expenses = this.expenseListService.getExpenses();
+    this.currentMonth = new Date(this.currentBudget.year, this.currentBudget.month - 1).toLocaleString('eng-us', { month: 'long' });
+    this.loadChart();
+    }
     this.expenseSubscription = this.expenseListService.expensesChanged.subscribe(
       (expenses: Expense[]) => {
         this.expenses = expenses;
+        this.currentBudget = this.budgetListService.getCurrentBudget();
         this.loadChart();
       }
     );
@@ -52,16 +54,10 @@ export class HomePageComponent implements OnInit {
       (budget: Budget) => {
         this.currentBudget = budget;
         this.currentMonth = new Date(this.currentBudget.year, this.currentBudget.month - 1).toLocaleString('eng-us', { month: 'long' });
+        this.expenses = this.expenseListService.getExpenses();
         this.loadChart();
       }
     );
-
-    // TODO: Make sure the overconsumption is calculated correctly, and isnt hardcoded
-    // TODO: get budged from budget service
-    // TODO: handle if expense list is empty
-    if  (this.expenses.length > 0) {
-    this.foodExpense = this.expenseListService.getExpense(0).amount - this.foodBudget;
-    }
   }
 
   loadChart() {
