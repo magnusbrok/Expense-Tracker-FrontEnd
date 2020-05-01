@@ -65,7 +65,7 @@ export class BudgetPostEditComponent implements OnInit, OnDestroy{
   onSaveBudget() {
     this.backEndService.updateBudget(this.budgetService.getCurrentBudget().year, this.budgetService.getCurrentBudget().month);
     // this.backEndService.updateBudget();
-    this.toogle = !this.toogle;
+    this.toogle = false;
     this.status = this.toogle ? 'Save Budget' : 'Saved Budget!';
   }
 
