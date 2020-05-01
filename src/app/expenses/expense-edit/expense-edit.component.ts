@@ -5,6 +5,7 @@ import {Subscription} from 'rxjs';
 import {Expense} from '../expense.model';
 import {BudgetPostListService} from '../../shared/budget-post-list.service';
 import {Budget} from '../../budget/budget.model';
+import {BackEndService} from '../../back-end.service';
 
 @Component({
   selector: 'app-expense-edit',
@@ -18,9 +19,10 @@ export class ExpenseEditComponent implements OnInit, OnDestroy {
   editMode = false;
   editedItemIndex: number;
   editedItem: Expense;
+  currentBudget: Budget;
   categoryList: string[];
 
-  constructor(private expenseListService: ExpenseListService, private budgetListService: BudgetPostListService) {}
+  constructor(private expenseListService: ExpenseListService, private budgetListService: BudgetPostListService, private backEndService: BackEndService) {}
 
   ngOnInit(): void {
     this.subscription = this.expenseListService.startedEditing.subscribe(
@@ -36,9 +38,10 @@ export class ExpenseEditComponent implements OnInit, OnDestroy {
         });
       }
     );
+    this.currentBudget = this.budgetListService.getCurrentBudget();
     this.budgetSub = this.budgetListService.budgetChanged.subscribe((budget: Budget) => {
       this.categoryList = this.budgetListService.getCategoryList();
-      console.log(this.categoryList);
+      this.currentBudget = this.budgetListService.getCurrentBudget();
     });
   }
 
@@ -51,6 +54,7 @@ export class ExpenseEditComponent implements OnInit, OnDestroy {
       this.expenseListService.addExpense(newExpense);
     }
     this.editMode = false;
+    this.backEndService.updateExpense(this.currentBudget.year, this.currentBudget.month);
     form.reset();
   }
 
@@ -62,6 +66,8 @@ export class ExpenseEditComponent implements OnInit, OnDestroy {
   onDelete() {
     this.onClear();
     this.expenseListService.deleteExpense(this.editedItemIndex);
+    this.backEndService.updateExpense(this.currentBudget.year, this.currentBudget.month);
+
   }
 
   ngOnDestroy(): void {
