@@ -7,8 +7,9 @@
     <th scope="col">Balance</th>
   </tr>
   </thead>
-  <tbody (click)="onSelected()">
-  <tr *ngFor="let history of histories; let i = index">
+  <tbody>
+  <tr *ngFor="let history of histories; let i = index"
+      (click)="onSelected(i)">
     <td>
       {{history.month}}
     </td>

@@ -15,10 +15,8 @@
         </div>
         <h5>History of chosen year</h5>
 
-        <app-history-item
-          *ngFor="let historyEl of histories"
-          [history]="historyEl"
-          (historySelected)="onHistorySelected(historyEl)">
+        <app-history-item>
+
         </app-history-item>
 
       </div>
@@ -26,3 +24,4 @@
   </div>
 
 </div>
+

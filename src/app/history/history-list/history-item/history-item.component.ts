@@ -21,7 +21,7 @@ export class HistoryItemComponent implements OnInit {
     this.histories = this.historyService.getHistories();
   }
 
-  onSelected() {
-    this.historySelected.emit();
+  onSelected(index: number) {
+    this.historyService.historySelected.next(index);
   }
 }

@@ -5,8 +5,8 @@ import { History} from './history.model';
 
 @Injectable()
 export class HistoryService {
-  historyChanged = new Subject<History[]>();
-  historySelected = new EventEmitter<History>();
+  historySelected = new Subject<number>();
+
 
   private histories: History[] = [
     new History('January', 35000, 36000, -1000),
@@ -15,5 +15,9 @@ export class HistoryService {
 
   getHistories() {
     return this.histories.slice();
+  }
+
+  getHistory(index: number) {
+    return this.histories[index];
   }
 }
