@@ -14,43 +14,15 @@
           </select>
         </div>
         <h5>History of chosen year</h5>
-        <table class="table table-hover">
-          <thead>
-          <tr>
-            <th scope="col">Month</th>
-            <th scope="col">Payments</th>
-            <th scope="col">Payouts</th>
-            <th scope="col">Balance</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let history of histories; let i = index">
-            <td>
-              {{history.month}}
-            </td>
-            <td>
-              {{history.payments}}
-            </td>
-            <td>
-              {{history.payouts}}
-            </td>
-            <td>
-              {{history.payments - history.payouts}}
-            </td>
-          </tr>
-          </tbody>
-        </table>
+
+        <app-history-item
+          *ngFor="let historyEl of histories"
+          [history]="historyEl"
+          (historySelected)="onHistorySelected(historyEl)">
+        </app-history-item>
+
       </div>
     </div>
-  </div>
-
-
-  <div class="col-lg-6">
-    <app-history-item
-      *ngFor="let historyEl of histories"
-      [history]="historyEl"
-      (historySelected)="onHistorySelected(historyEl)">
-    </app-history-item>
   </div>
 
 </div>

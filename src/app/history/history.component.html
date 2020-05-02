@@ -4,6 +4,9 @@
     (historyWasSelected)="selectedHistory = $event">
   </app-history-list>
 
+  <div class="card card-password">
+    <div class="card-body">
+
   <app-history-detail
     *ngIf="selectedHistory; else infoText"
     [history]="selectedHistory">
@@ -11,4 +14,8 @@
   <ng-template #infoText>
     <p>Please select a Month!</p>
   </ng-template>
+
+
+    </div>
+  </div>
 </div>
