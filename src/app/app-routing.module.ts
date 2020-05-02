@@ -9,6 +9,7 @@ import {HistoryListComponent} from './history/history-list/history-list.componen
 import {ProfileComponent} from './profile/profile.component';
 import {AuthenticationGuard} from './authentication/authentication.guard';
 import {FrontPageComponent} from './front-page/front-page.component';
+import {HistoryComponent} from './history/history.component';
 
 
 const appRoutes: Routes = [
@@ -16,7 +17,7 @@ const appRoutes: Routes = [
   // {path: '', redirectTo: '/home-page', pathMatch: 'full'},
   { path: 'home-page', component: HomePageComponent, canActivate: [AuthenticationGuard] },
   { path: 'budget', component: BudgetComponent, canActivate: [AuthenticationGuard]},
-  { path: 'history', component: HistoryListComponent, canActivate: [AuthenticationGuard], children: [
+  { path: 'history', component: HistoryComponent, canActivate: [AuthenticationGuard], children: [
       { path: 'id', component: HistoryListComponent }
     ] },
   { path: 'expenses', component: ExpensesComponent, canActivate: [AuthenticationGuard] },

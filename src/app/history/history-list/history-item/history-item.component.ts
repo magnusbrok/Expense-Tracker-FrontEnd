@@ -12,6 +12,7 @@ import {History} from '../../history.model';
 export class HistoryItemComponent implements OnInit {
   @Output() historySelected = new EventEmitter<void>();
   @Input() history: History;
+  isHistorySelected = false;
 
   histories: History[];
 
@@ -23,5 +24,6 @@ export class HistoryItemComponent implements OnInit {
 
   onSelected(index: number) {
     this.historyService.historySelected.next(index);
+    this.isHistorySelected = !this.isHistorySelected;
   }
 }

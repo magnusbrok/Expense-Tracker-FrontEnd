@@ -6,6 +6,7 @@ import { History} from './history.model';
 @Injectable()
 export class HistoryService {
   historySelected = new Subject<number>();
+  isHistorySelected = new Subject<boolean>();
 
 
   private histories: History[] = [
@@ -20,4 +21,7 @@ export class HistoryService {
   getHistory(index: number) {
     return this.histories[index];
   }
+
+
+
 }

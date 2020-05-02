@@ -7,13 +7,13 @@
   <div class="card card-password">
     <div class="card-body">
 
-  <app-history-detail
-    *ngIf="selectedHistory; else infoText"
-    [history]="selectedHistory">
-  </app-history-detail>
-  <ng-template #infoText>
-    <p>Please select a Month!</p>
-  </ng-template>
+      <app-history-detail
+        *ngIf="selectedHistory; else infoText"
+        [history]="selectedHistory">
+      </app-history-detail>
+      <ng-template #infoText>
+        <p>Please select a Month!</p>
+      </ng-template>
 
 
     </div>
