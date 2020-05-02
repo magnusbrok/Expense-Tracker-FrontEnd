@@ -46,7 +46,11 @@
 
 
   <div class="col-lg-6">
-    <app-history-item></app-history-item>
+    <app-history-item
+      *ngFor="let historyEl of histories"
+      [history]="historyEl"
+      (historySelected)="onHistorySelected(historyEl)">
+    </app-history-item>
   </div>
 
 </div>

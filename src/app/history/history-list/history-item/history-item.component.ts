@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HistoryService} from '../../history.service';
 import {History} from '../../history.model';
 
@@ -10,6 +10,7 @@ import {History} from '../../history.model';
 })
 
 export class HistoryItemComponent implements OnInit {
+  @Output() historySelected = new EventEmitter<void>();
   @Input() history: History;
 
   histories: History[];
@@ -18,5 +19,9 @@ export class HistoryItemComponent implements OnInit {
 
   ngOnInit() {
     this.histories = this.historyService.getHistories();
+  }
+
+  onSelected() {
+    this.historySelected.emit();
   }
 }

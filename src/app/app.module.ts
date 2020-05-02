@@ -21,7 +21,6 @@ import {AuthenticationGuard} from './authentication/authentication.guard';
 import { FrontPageComponent } from './front-page/front-page.component';
 import {BudgetPostListService} from './shared/budget-post-list.service';
 import { BudgetPostEditComponent } from './budget-post-edit/budget-post-edit.component';
-import {HistoryStartComponent} from './history/history-start/history-start.component';
 import {HistoryService} from './history/history.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -29,6 +28,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule} from '@angular/material/core';
 import { HistoryComponent} from './history/history.component';
 import {HistoryItemComponent} from './history/history-list/history-item/history-item.component';
+import {HistoryDetailComponent} from './history/history-detail/history-detail.component';
 
 @NgModule({
   declarations: [
@@ -46,9 +46,9 @@ import {HistoryItemComponent} from './history/history-list/history-item/history-
     DropdownDirective,
     FrontPageComponent,
     BudgetPostEditComponent,
-    HistoryStartComponent,
     HistoryComponent,
-    HistoryItemComponent
+    HistoryItemComponent,
+    HistoryDetailComponent
   ],
   imports: [
     BrowserModule,
