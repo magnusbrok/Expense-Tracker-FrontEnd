@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {HistoryService} from './history.service';
+import {History} from './history.model';
 
 
 @Component({
@@ -10,6 +11,7 @@ import {HistoryService} from './history.service';
 })
 
 export class HistoryComponent implements OnInit{
+  selectedHistory: History;
 
   constructor() { }
 

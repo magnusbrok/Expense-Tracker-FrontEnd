@@ -1,5 +1,14 @@
 <div class="row">
 
-  <app-history-list></app-history-list>
+  <app-history-list
+    (historyWasSelected)="selectedHistory = $event">
+  </app-history-list>
 
+  <app-history-detail
+    *ngIf="selectedHistory; else infoText"
+    [history]="selectedHistory">
+  </app-history-detail>
+  <ng-template #infoText>
+    <p>Please select a Month!</p>
+  </ng-template>
 </div>

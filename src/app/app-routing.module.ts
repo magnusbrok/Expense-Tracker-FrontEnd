@@ -9,7 +9,6 @@ import {HistoryListComponent} from './history/history-list/history-list.componen
 import {ProfileComponent} from './profile/profile.component';
 import {AuthenticationGuard} from './authentication/authentication.guard';
 import {FrontPageComponent} from './front-page/front-page.component';
-import {HistoryStartComponent} from './history/history-start/history-start.component';
 
 
 const appRoutes: Routes = [
@@ -18,7 +17,6 @@ const appRoutes: Routes = [
   { path: 'home-page', component: HomePageComponent, canActivate: [AuthenticationGuard] },
   { path: 'budget', component: BudgetComponent, canActivate: [AuthenticationGuard]},
   { path: 'history', component: HistoryListComponent, canActivate: [AuthenticationGuard], children: [
-      { path: '', component: HistoryStartComponent },
       { path: 'id', component: HistoryListComponent }
     ] },
   { path: 'expenses', component: ExpensesComponent, canActivate: [AuthenticationGuard] },
