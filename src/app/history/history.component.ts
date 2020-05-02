@@ -1,8 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {HistoryService} from './history.service';
-import {History} from './history.model';
 import {Subscription} from 'rxjs';
 import {ExpenseListService} from '../shared/expense-list.service';
+import {BudgetPostListService} from '../shared/budget-post-list.service';
+import {History} from './history.model';
 
 
 @Component({
@@ -15,9 +16,11 @@ import {ExpenseListService} from '../shared/expense-list.service';
 export class HistoryComponent implements OnInit{
   selectedHistory: History;
   private subscription: Subscription;
+  budgetSub: Subscription;
   isHistorySelected = false;
+  historyList: History[] = [];
 
-  constructor(private historyService: HistoryService, private expenseService: ExpenseListService) { }
+  constructor(private historyService: HistoryService, private expenseService: ExpenseListService, private budgetListService: BudgetPostListService) { }
 
   ngOnInit() {
     this.subscription = this.historyService.isHistorySelected.subscribe(
@@ -25,5 +28,7 @@ export class HistoryComponent implements OnInit{
         this.isHistorySelected = historyBoolean;
       }
     );
+    this.historyList.push(new History(this.budgetListService.getCurrentBudget(), this.expenseService.getExpenses()));
+    this.historyService.setHistoryList(this.historyList);
   }
 }

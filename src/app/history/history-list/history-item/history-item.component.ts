@@ -25,5 +25,6 @@ export class HistoryItemComponent implements OnInit {
   onSelected(index: number) {
     this.historyService.historySelected.next(index);
     this.isHistorySelected = !this.isHistorySelected;
+    this.historyService.isHistorySelected.next(this.isHistorySelected);
   }
 }

@@ -8,8 +8,7 @@
     <div class="card-body">
 
       <app-history-detail
-        *ngIf="selectedHistory; else infoText"
-        [history]="selectedHistory">
+        *ngIf="true; else infoText">
       </app-history-detail>
       <ng-template #infoText>
         <p>Please select a Month!</p>

@@ -11,16 +11,16 @@
   <tr *ngFor="let history of histories; let i = index"
       (click)="onSelected(i)">
     <td>
-      {{history.month}}
+      {{history.budget.month}}
     </td>
     <td>
-      {{history.payments}}
+      {{history.totalBudget}}
     </td>
     <td>
-      {{history.payouts}}
+      {{history.totalExpenses}}
     </td>
     <td>
-      {{history.payments - history.payouts}}
+      {{history.totalBudget - history.totalExpenses}}
     </td>
   </tr>
   </tbody>
