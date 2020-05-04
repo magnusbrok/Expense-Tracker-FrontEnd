@@ -1,7 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import { History } from '../history.model';
-import {ActivatedRoute} from '@angular/router';
-import {HistoryService} from '../history.service';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-history-list',
@@ -9,17 +6,10 @@ import {HistoryService} from '../history.service';
   styleUrls: ['./history-list.component.css']
 })
 export class HistoryListComponent implements OnInit {
-  @Output() historyWasSelected = new EventEmitter<History>();
-  histories: History[];
 
-  constructor(private historyService: HistoryService, private route: ActivatedRoute) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.histories = this.historyService.getHistories();
-  }
-
-  onHistorySelected(history: History) {
-    this.historyWasSelected.emit(history);
   }
 }

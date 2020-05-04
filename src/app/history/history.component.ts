@@ -13,14 +13,14 @@ import {History} from './history.model';
   providers: [HistoryService]
 })
 
-export class HistoryComponent implements OnInit{
-  selectedHistory: History;
+export class HistoryComponent implements OnInit {
   private subscription: Subscription;
-  budgetSub: Subscription;
   isHistorySelected = false;
   historyList: History[] = [];
 
-  constructor(private historyService: HistoryService, private expenseService: ExpenseListService, private budgetListService: BudgetPostListService) { }
+  constructor(private historyService: HistoryService,
+              private expenseService: ExpenseListService,
+              private budgetListService: BudgetPostListService) { }
 
   ngOnInit() {
     this.subscription = this.historyService.isHistorySelected.subscribe(

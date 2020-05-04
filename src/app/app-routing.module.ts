@@ -5,7 +5,6 @@ import {BudgetComponent} from './budget/budget.component';
 import {ExpensesComponent} from './expenses/expenses.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {AuthenticationComponent} from './authentication/authentication.component';
-import {HistoryListComponent} from './history/history-list/history-list.component';
 import {ProfileComponent} from './profile/profile.component';
 import {AuthenticationGuard} from './authentication/authentication.guard';
 import {FrontPageComponent} from './front-page/front-page.component';
