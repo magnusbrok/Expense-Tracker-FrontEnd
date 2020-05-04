@@ -1,20 +1,19 @@
+<br>
 <div class="row">
 
-  <app-history-list
-    (historyWasSelected)="selectedHistory = $event">
-  </app-history-list>
-
-  <div class="card card-password">
-    <div class="card-body">
-
-      <app-history-detail
-        *ngIf="true; else infoText">
-      </app-history-detail>
-      <ng-template #infoText>
-        <p>Please select a Month!</p>
-      </ng-template>
-
-
-    </div>
+  <div class="col-lg-6">
+    <app-history-list
+      (historyWasSelected)="selectedHistory = $event">
+    </app-history-list>
   </div>
+
+  <div class="col-lg-6">
+    <app-history-detail
+      *ngIf="true; else infoText">
+    </app-history-detail>
+    <ng-template #infoText>
+      <p>Please select a Month!</p>
+    </ng-template>
+  </div>
+
 </div>
