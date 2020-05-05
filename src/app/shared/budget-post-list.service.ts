@@ -7,7 +7,10 @@ export class BudgetPostListService {
   budgetChanged = new Subject<Budget>();
   startedEditing = new Subject<number>();
   budgetList: Budget[] = [];
-  budget: Budget = new Budget(2020, 5);
+  date = new Date();
+  budget: Budget = new Budget(this.date.getFullYear(), this.date.getMonth() + 1);
+  categoryList: string[] = [];
+
 
 
 
@@ -18,12 +21,14 @@ export class BudgetPostListService {
   addBudgetPost(post: BudgetPost) {
     this.budget.posts.push(post);
     this.budgetChanged.next(this.budget);
+    this.updateCategoryList();
     console.log(post);
   }
 
   updateBudgetPost(index: number, newPost: BudgetPost) {
     this.budget.posts[index] = newPost;
     this.budgetChanged.next(this.budget);
+    this.updateCategoryList();
   }
 
   getCurrentBudget() {
@@ -33,15 +38,19 @@ export class BudgetPostListService {
   deleteBudgetPost(index: number) {
     this.budget.posts.splice(index, 1);
     this.budgetChanged.next(this.budget);
+    this.updateCategoryList();
   }
 
   setBudget(budget: Budget) {
     this.budget = budget;
+    this.updateCategoryList();
     this.budgetChanged.next(this.budget);
+
   }
 
-
-
+  getCategoryList() {
+    return this.categoryList.slice();
+  }
   getBudgets() {
     return this.budgetList.slice();
   }
@@ -51,5 +60,12 @@ export class BudgetPostListService {
   addBudget(budget: Budget) {
     this.budgetList.push(budget);
     this.budgetListChange.next(this.budgetList.slice());
+  }
+
+  updateCategoryList() {
+    this.categoryList = [];
+    for (const post of this.budget.posts) {
+      this.categoryList.push(post.category.toString());
+    }
   }
 }

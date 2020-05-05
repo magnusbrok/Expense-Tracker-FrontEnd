@@ -10,41 +10,70 @@ import {Budget} from './budget/budget.model';
   providedIn: 'root'
 })
 export class BackEndService {
-
-  domain = `http://dist.saluton.dk:3040`;
-  path = `budget`;
+  domain = `http://dist.saluton.dk:3344`;
+  budget = `budget`;
+  expense = `expenses`;
+  firstTimeLogon = true;
 
   constructor(
     private http: HttpClient,
     private authService: AuthenticationService,
     private budgetPostListService: BudgetPostListService,
     private expenseListService: ExpenseListService
-    ) { }
+  ) {}
 
-  fetchExpenses(username: string) {
-    // TODO: change url to dist.saluton.dk
-    this.http.get<Expense[]>('http://dist.saluton.dk:3040/expenses/' + username).subscribe(fetchedExpenses => {
-      this.expenseListService.setExpenses(fetchedExpenses);
-    });
+  getAllExpenses(username: string) {
+    const url = `${ this.domain }/${username}/${this.expense}`;
+
+    this.http.get<Expense[]>(url)
+      .subscribe(fetchedExpenses => {
+        this.expenseListService.setExpenses(fetchedExpenses);
+      });
   }
 
-  getBudgetList() {
-    const url = `${ this.domain }/${this.path}`;
+  getExpenses(year: number, month: number) {
+
+    const username = this.authService.getUser().username;
+    const url = `${ this.domain }/${username}/${this.expense}/${ year }/${ month }`;
+
+    this.http.get<Expense[]>(url)
+      .subscribe(expenses => {
+        this.expenseListService.setExpenses(expenses);
+      });
+  }
+
+  updateExpense(year: number, month: number) {
+    const username = this.authService.getUser().username;
+    const expenses = this.expenseListService.getExpenses();
+    const url = `${ this.domain }/${username}/${this.expense}/${ year }/${ month }`;
+
+    this.http.put(
+      url,
+      expenses
+    ).subscribe();
+  }
+
+  getAllBudgets() {
+    const username = this.authService.getUser().username;
+    const url = `${ this.domain }/${username}${this.budget}`;
     return this.http.get<Budget>(url);
   }
 
   getBudget(year: number, month: number) {
 
     const username = this.authService.getUser().username;
-    const url = `${ this.domain }/${this.path}/${username}/${ year }/${ month }`;
+    const url = `${ this.domain }/${username}/${this.budget}/${ year }/${ month }`;
 
-    return this.http.get<Budget>(url);
+    this.http.get<Budget>(url)
+      .subscribe(budget => {
+      this.budgetPostListService.setBudget(budget);
+      });
   }
 
-  createBudget(id: number) {
+  updateBudget(year: number, month: number) {
     const username = this.authService.getUser().username;
     const budget = this.budgetPostListService.getCurrentBudget();
-    const url = `${ this.domain }/${username}/${this.path}`;
+    const url = `${ this.domain }/${username}/${this.budget}/${ year }/${ month }`;
 
     this.http.post(
       url,
@@ -52,11 +81,4 @@ export class BackEndService {
     ).subscribe();
   }
 
-  updateBudget(id: number) {
-
-  }
-
-  deleteBudget(id: number) {
-
-  }
 }

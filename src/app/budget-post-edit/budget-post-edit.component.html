@@ -1,16 +1,15 @@
 <form (ngSubmit)="onSubmit(f)" #f="ngForm">
   <div class="row">
-    <div class="class col sm 4 form-group">
-      <label>Choose categories!</label>
+    <div class="col-sm-3 form-group">
+      <label>Category</label>
       <input
         id="category"
         name="category"
         class="form-control"
         ngModel
-        required> <!--Knappen skal enables når "tilføj budget" klikkes på i budget"[disabled]=[buttonDisabled] -->
-
+        required>
     </div>
-    <div class="class col sm 4 form-group">
+    <div class="col-sm-4 form-group">
       <div class="row">
         <label>Amount</label>
         <div class="input-group">
@@ -22,7 +21,6 @@
             type="number"
             required
             pattern="^[1-9]+[0-9]*$">
-
           <div class="input-group-btn">
             <div class="row">
               <div class="col xs 12">
@@ -36,11 +34,13 @@
       </div>
     </div>
   </div>
-  <span class="help-block"
-        *ngIf="!f.valid && f.touched"> Please enter valid information for all the boxes</span>
+  <div style="padding-bottom: 15px">
+  <span class="alert alert-danger"
+        *ngIf="!f.valid && f.touched" > Please enter valid information for your Budget Post!</span>
+  </div>
 </form>
 <div class="text-left">
-  <button (click)="onSaveBudget()" class="btn btn-primary">Save budget</button>
+  <button [style.background-color]="toggle ? 'blue' : 'green'" (click)="onSaveBudget()" class="btn btn-primary">{{status}}</button>
 </div>
 
 

@@ -3,6 +3,9 @@ import {NgForm} from '@angular/forms';
 import {ExpenseListService} from '../../shared/expense-list.service';
 import {Subscription} from 'rxjs';
 import {Expense} from '../expense.model';
+import {BudgetPostListService} from '../../shared/budget-post-list.service';
+import {Budget} from '../../budget/budget.model';
+import {BackEndService} from '../../back-end.service';
 
 @Component({
   selector: 'app-expense-edit',
@@ -12,13 +15,19 @@ import {Expense} from '../expense.model';
 export class ExpenseEditComponent implements OnInit, OnDestroy {
   @ViewChild('f', { static: false }) elForm: NgForm;
   subscription: Subscription;
+  budgetSub: Subscription;
   editMode = false;
   editedItemIndex: number;
   editedItem: Expense;
+  currentBudget: Budget;
+  categoryList: string[];
 
-  constructor(private expenseListService: ExpenseListService) {}
+  constructor(private expenseListService: ExpenseListService,
+              private budgetListService: BudgetPostListService,
+              private backEndService: BackEndService) {}
 
   ngOnInit(): void {
+    this.categoryList = this.budgetListService.getCategoryList();
     this.subscription = this.expenseListService.startedEditing.subscribe(
       (index: number) => {
         this.editedItemIndex = index;
@@ -32,6 +41,11 @@ export class ExpenseEditComponent implements OnInit, OnDestroy {
         });
       }
     );
+    this.currentBudget = this.budgetListService.getCurrentBudget();
+    this.budgetSub = this.budgetListService.budgetChanged.subscribe((budget: Budget) => {
+      this.categoryList = this.budgetListService.getCategoryList();
+      this.currentBudget = this.budgetListService.getCurrentBudget();
+    });
   }
 
   onSubmit(form: NgForm) {
@@ -43,6 +57,7 @@ export class ExpenseEditComponent implements OnInit, OnDestroy {
       this.expenseListService.addExpense(newExpense);
     }
     this.editMode = false;
+    this.backEndService.updateExpense(this.currentBudget.year, this.currentBudget.month);
     form.reset();
   }
 
@@ -54,6 +69,8 @@ export class ExpenseEditComponent implements OnInit, OnDestroy {
   onDelete() {
     this.onClear();
     this.expenseListService.deleteExpense(this.editedItemIndex);
+    this.backEndService.updateExpense(this.currentBudget.year, this.currentBudget.month);
+
   }
 
   ngOnDestroy(): void {

@@ -1,0 +1,27 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">Month</th>
+    <th scope="col">Payments</th>
+    <th scope="col">Payouts</th>
+    <th scope="col">Balance</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let history of histories; let i = index"
+      (click)="onSelected(i)">
+    <td>
+      {{history.budget.month}}
+    </td>
+    <td>
+      {{history.totalBudget}}
+    </td>
+    <td>
+      {{history.totalExpenses}}
+    </td>
+    <td>
+      {{history.totalBudget - history.totalExpenses}}
+    </td>
+  </tr>
+  </tbody>
+</table>

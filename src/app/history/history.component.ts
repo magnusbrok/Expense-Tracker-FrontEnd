@@ -1,31 +1,33 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import { History } from './history.model';
+import {HistoryService} from './history.service';
+import {Subscription} from 'rxjs';
+import {ExpenseListService} from '../shared/expense-list.service';
+import {BudgetPostListService} from '../shared/budget-post-list.service';
+import {History} from './history.model';
 
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.css']
+  styleUrls: ['./history.component.css'],
+  providers: [HistoryService]
 })
-export class HistoryComponent implements OnInit {
-  @Output() monthSelected = new EventEmitter<History>();
-  histories: History[] = [
-    new History('January', 35000, 36000, -1000),
-    new History('February', 34000, 32000, 2000),
-    new History('March', 41000, 42000, -1000),
-    new History('April', 39000, 41000, -2000),
-    new History('May', 34000, 32000, 2000),
-    new History('June', 41000, 42000, -1000),
-    new History('July', 35000, 36000, -1000),
-    new History('August', 34000, 32000, 2000),
-    new History('September', 41000, 42000, -1000),
-    new History('October', 41000, 42000, -1000),
-    new History('November', 41000, 42000, -1000),
-    new History('December', 41000, 42000, -1000)
-  ];
 
-  constructor() {
-  }
+export class HistoryComponent implements OnInit {
+  private subscription: Subscription;
+  isHistorySelected = false;
+  historyList: History[] = [];
+
+  constructor(private historyService: HistoryService,
+              private expenseService: ExpenseListService,
+              private budgetListService: BudgetPostListService) { }
 
   ngOnInit() {
+    this.subscription = this.historyService.isHistorySelected.subscribe(
+      (historyBoolean: boolean) => {
+        this.isHistorySelected = historyBoolean;
+      }
+    );
+    this.historyList.push(new History(this.budgetListService.getCurrentBudget(), this.expenseService.getExpenses()));
+    this.historyService.setHistoryList(this.historyList);
   }
 }

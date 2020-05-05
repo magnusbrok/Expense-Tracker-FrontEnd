@@ -1,44 +1,79 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as CanvasJS from './canvasjs.min';
 import {ExpenseListService} from '../shared/expense-list.service';
 import {Expense} from '../expenses/expense.model';
 import {Subscription} from 'rxjs';
-
-// TODO: get categories from method get category (or something alike)
-
-// categories are placeholder
+import {BudgetPostListService} from '../shared/budget-post-list.service';
+import {Budget} from '../budget/budget.model';
+import {BackEndService} from '../back-end.service';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, OnDestroy {
 
-  constructor(private expenseListService: ExpenseListService) {}
+  constructor(private expenseListService: ExpenseListService,
+              private budgetListService: BudgetPostListService,
+              private backEndService: BackEndService) {}
   expenses: Expense[];
-  private subscription: Subscription;
-
-  foodBudget = 700;
-  foodExpense =  0;
+  private expenseSubscription: Subscription;
+  private budgetSubscription: Subscription;
+  currentMonth = 'loading';
+  currentDate = new Date();
+  currentBudget: Budget = new Budget(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1);
+  chartBudget = [];
+  chartExpenses = [];
   ngOnInit() {
+    if (this.backEndService.firstTimeLogon === true) {
+      this.backEndService.getBudget(this.currentBudget.year, this.currentBudget.month);
+      this.backEndService.getExpenses(this.currentBudget.year, this.currentBudget.month);
+      this.backEndService.firstTimeLogon = false;
+    } else {
+    this.currentBudget = this.budgetListService.getCurrentBudget();
     this.expenses = this.expenseListService.getExpenses();
-    this.subscription = this.expenseListService.expensesChanged.subscribe(
+    this.currentMonth = new Date(this.currentBudget.year, this.currentBudget.month - 1).toLocaleString('eng-us', { month: 'long' });
+    this.loadChart();
+    }
+    this.expenseSubscription = this.expenseListService.expensesChanged.subscribe(
       (expenses: Expense[]) => {
         this.expenses = expenses;
+        this.currentBudget = this.budgetListService.getCurrentBudget();
+        this.loadChart();
       }
     );
-    // TODO: Make sure the overconsumption is calculated correctly, and isnt hardcoded
-    // TODO: get budged from budget service
-    // TODO: handle if expense list is empty
-    if  (this.expenses.length > 0) {
-    this.foodExpense = this.expenseListService.getExpense(0).amount - this.foodBudget;
+    this.budgetSubscription = this.budgetListService.budgetChanged.subscribe(
+      (budget: Budget) => {
+        this.currentBudget = budget;
+        this.currentMonth = new Date(this.currentBudget.year, this.currentBudget.month - 1).toLocaleString('eng-us', { month: 'long' });
+        this.expenses = this.expenseListService.getExpenses();
+        this.loadChart();
+      }
+    );
+  }
+
+  loadChart() {
+    let totalExpense = 0;
+    this.chartBudget = [];
+    this.chartExpenses = [];
+    for (const budgetPost of this.currentBudget.posts) {
+      totalExpense = 0;
+      this.chartBudget.push({label: budgetPost.category, y: budgetPost.amount});
+      for (const expense of this.expenses) {
+        if (expense.category === budgetPost.category) {
+          totalExpense += expense.amount;
+        }
+      }
+      if (totalExpense > budgetPost.amount) {
+        this.chartExpenses.push({y: totalExpense - budgetPost.amount});
+      } else {
+        this.chartExpenses.push({y: 0});
+      }
     }
+
     const chart = new CanvasJS.Chart('chartContainer', {
       animationEnabled: true,
-      title: {
-        text: 'Expenses This Month'
-      },
       axisY: {
         suffix: 'kr'
       },
@@ -51,34 +86,27 @@ export class HomePageComponent implements OnInit {
         horizontalAlign: 'right'
       },
       data: [{
-          type: 'stackedColumn',
-          name: 'Budget',
-          showInLegend: true,
-          xValueFormatString: '######################',
-          yValueFormatString: '### "kr"',
-          dataPoints: [
-            { label: 'Entertainment' , y: this.foodBudget },
-            { label: 'Food' , y: 700 },
-            { label: 'Electronics', y: 500 },
-            { label: 'Other', y: 300 }
-          ]
-        },
+        type: 'stackedColumn',
+        name: 'Budget',
+        showInLegend: true,
+        xValueFormatString: '######################',
+        yValueFormatString: '### "kr"',
+        dataPoints: this.chartBudget
+      },
         {
           type: 'stackedColumn',
           name: 'Overconsumption',
           showInLegend: true,
           xValueFormatString: '#########################',
           yValueFormatString: '### "kr"',
-          dataPoints: [
-            { y: 300 },
-            { y:  this.foodExpense},
-            {y: 500 },
-            {y: 200 }
-          ]
+          dataPoints: this.chartExpenses
         }
-        // TODO: handle over-/underconsumption
-        ]
+      ]
     });
     chart.render();
+  }
+  ngOnDestroy(): void {
+    this.budgetSubscription.unsubscribe();
+    this.expenseSubscription.unsubscribe();
   }
   }
