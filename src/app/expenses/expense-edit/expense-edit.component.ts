@@ -22,7 +22,9 @@ export class ExpenseEditComponent implements OnInit, OnDestroy {
   currentBudget: Budget;
   categoryList: string[];
 
-  constructor(private expenseListService: ExpenseListService, private budgetListService: BudgetPostListService, private backEndService: BackEndService) {}
+  constructor(private expenseListService: ExpenseListService,
+              private budgetListService: BudgetPostListService,
+              private backEndService: BackEndService) {}
 
   ngOnInit(): void {
     this.categoryList = this.budgetListService.getCategoryList();

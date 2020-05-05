@@ -5,7 +5,6 @@ import {ExpenseListService} from '../shared/expense-list.service';
 import {BudgetPostListService} from '../shared/budget-post-list.service';
 import {History} from './history.model';
 
-
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',

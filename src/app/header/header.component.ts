@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import {AuthenticationService} from "../authentication/authentication.service";
-import {Subscription} from "rxjs";
-import {User} from "../authentication/user.model";
-import {Router} from "@angular/router";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AuthenticationService} from '../authentication/authentication.service';
+import {Subscription} from 'rxjs';
+import {User} from '../authentication/user.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   username: string;
   isAuthenticated : boolean;
@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    private router : Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {

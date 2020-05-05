@@ -25,14 +25,13 @@ export class AuthenticationService {
 
   logIn(username: string, password: string) {
     return this.http.post<User>(
-      // TODO: change to dist.saluton.dk
-      ' http://localhost:3344/login',
+      ' http://dist.saluton.dk:3344/login',
       {username, password}
     )
       .pipe(
         catchError(this.errorHandle),
         tap( response => {
-            if(response.username) this.setUser(response);
+            if (response.username) { this.setUser(response); }
           })
       );
   }
@@ -45,8 +44,8 @@ export class AuthenticationService {
 
   }
 
-  private errorHandle(errorRes : HttpErrorResponse){
-    let errorMsg = errorRes.error;
+  private errorHandle(errorRes: HttpErrorResponse) {
+    const errorMsg = errorRes.error;
     return throwError(errorMsg);
   }
 }

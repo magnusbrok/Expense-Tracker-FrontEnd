@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {HistoryService} from '../../history.service';
 import {History} from '../../history.model';
 
-
 @Component({
   selector: 'app-history-item',
   templateUrl: './history-item.component.html',

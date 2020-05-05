@@ -17,7 +17,7 @@ export class BudgetPostEditComponent implements OnInit, OnDestroy{
   editMode = false;
   editedItemIndex: number;
   editedItem: BudgetPost;
-  toogle = true;
+  toggle = true;
   status = 'Save Budget';
 
 
@@ -47,26 +47,26 @@ export class BudgetPostEditComponent implements OnInit, OnDestroy{
     }
     this.editMode = false;
     form.reset();
-    this.toogle = true;
+    this.toggle = true;
   }
   onClear() {
     this.editMode = false;
     this.budgetForm.reset();
-    this.toogle = true;
+    this.toggle = true;
 
   }
 
   onDelete() {
     this.onClear();
     this.budgetService.deleteBudgetPost(this.editedItemIndex);
-    this.toogle = true;
+    this.toggle = true;
   }
 
   onSaveBudget() {
     this.backEndService.updateBudget(this.budgetService.getCurrentBudget().year, this.budgetService.getCurrentBudget().month);
     // this.backEndService.updateBudget();
-    this.toogle = false;
-    this.status = this.toogle ? 'Save Budget' : 'Saved Budget!';
+    this.toggle = false;
+    this.status = this.toggle ? 'Save Budget' : 'Saved Budget!';
   }
 
   ngOnDestroy(): void {

@@ -4,8 +4,6 @@ import {History} from '../history.model';
 import {Expense} from '../../expenses/expense.model';
 import {Subscription} from 'rxjs';
 import {ExpenseListService} from '../../shared/expense-list.service';
-
-
 @Component({
   selector: 'app-history-detail',
   templateUrl: './history-detail.component.html',

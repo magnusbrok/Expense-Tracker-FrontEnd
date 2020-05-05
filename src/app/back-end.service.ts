@@ -10,8 +10,7 @@ import {Budget} from './budget/budget.model';
   providedIn: 'root'
 })
 export class BackEndService {
-
-  domain = `http://localhost:3344`; // TODO: change url to dist.saluton.dk
+  domain = `http://dist.saluton.dk:3344`;
   budget = `budget`;
   expense = `expenses`;
   firstTimeLogon = true;
@@ -21,8 +20,7 @@ export class BackEndService {
     private authService: AuthenticationService,
     private budgetPostListService: BudgetPostListService,
     private expenseListService: ExpenseListService
-
-    ) { }
+  ) {}
 
   getAllExpenses(username: string) {
     const url = `${ this.domain }/${username}/${this.expense}`;
