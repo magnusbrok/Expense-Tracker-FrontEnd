@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {Expense} from '../expenses/expense.model';
+import {Expense} from '../../expenses/expense.model';
 import {Subscription} from 'rxjs';
-import {BudgetPost} from '../budget/budgetPost.model';
-import {BudgetPostListService} from '../shared/budget-post-list.service';
-import {BackEndService} from '../back-end.service';
+import {BudgetPost} from '../budgetPost.model';
+import {BudgetPostListService} from '../../shared/budget-post-list.service';
+import {BackEndService} from '../../shared/back-end.service';
 
 @Component({
   selector: 'app-budget-post-edit',

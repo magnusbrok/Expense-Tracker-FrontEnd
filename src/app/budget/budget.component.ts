@@ -5,7 +5,7 @@ import {Subscription} from 'rxjs';
 import {BudgetPostListService} from '../shared/budget-post-list.service';
 import {Budget} from './budget.model';
 import {BudgetPost} from './budgetPost.model';
-import {BackEndService} from '../back-end.service';
+import {BackEndService} from '../shared/back-end.service';
 @Component({
   selector: 'app-budget',
   templateUrl: './budget.component.html',

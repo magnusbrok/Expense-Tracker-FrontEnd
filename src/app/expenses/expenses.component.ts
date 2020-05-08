@@ -4,7 +4,7 @@ import {ExpenseListService} from '../shared/expense-list.service';
 import {Subscription} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {AuthenticationService} from '../authentication/authentication.service';
-import {BackEndService} from '../back-end.service';
+import {BackEndService} from '../shared/back-end.service';
 
 @Component({
   selector: 'app-expenses',

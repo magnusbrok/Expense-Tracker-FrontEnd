@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Expense} from './expenses/expense.model';
-import {ExpenseListService} from './shared/expense-list.service';
-import {BudgetPostListService} from './shared/budget-post-list.service';
-import {AuthenticationService} from './authentication/authentication.service';
-import {Budget} from './budget/budget.model';
+import {Expense} from '../expenses/expense.model';
+import {ExpenseListService} from './expense-list.service';
+import {BudgetPostListService} from './budget-post-list.service';
+import {AuthenticationService} from '../authentication/authentication.service';
+import {Budget} from '../budget/budget.model';
 
 @Injectable({
   providedIn: 'root'
