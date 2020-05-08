@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HistoryService} from '../../history.service';
 import {History} from '../../history.model';
 
@@ -10,7 +10,7 @@ import {History} from '../../history.model';
 })
 
 export class HistoryItemComponent implements OnInit {
-  @Input() history: History;
+  isHistorySelected = false;
 
   histories: History[];
 
@@ -18,5 +18,11 @@ export class HistoryItemComponent implements OnInit {
 
   ngOnInit() {
     this.histories = this.historyService.getHistories();
+  }
+
+  onSelected(index: number) {
+    this.historyService.historySelected.next(index);
+    this.isHistorySelected = !this.isHistorySelected;
+    this.historyService.isHistorySelected.next(this.isHistorySelected);
   }
 }

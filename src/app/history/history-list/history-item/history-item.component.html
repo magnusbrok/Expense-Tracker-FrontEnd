@@ -1,20 +1,27 @@
-<div class="card card-password">
-  <div class="card-body">
-    <h5>History of chosen month</h5>
-    <hr>
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">
-        Viaplay
-        <span class="badge badge-primary badge-pill">-99</span>
-      </li>
-      <li class="list-group-item list-group-item-danger d-flex justify-content-between align-items-center">
-        Booster
-        <span class="badge badge-primary badge-pill">-30</span>
-      </li>
-      <li class="list-group-item list-group-item-danger d-flex justify-content-between align-items-center">
-        Junk
-        <span class="badge badge-primary badge-pill">-89</span>
-      </li>
-    </ul>
-  </div>
-</div>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">Month</th>
+    <th scope="col">Payments</th>
+    <th scope="col">Payouts</th>
+    <th scope="col">Balance</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let history of histories; let i = index"
+      (click)="onSelected(i)">
+    <td>
+      {{history.budget.month}}
+    </td>
+    <td>
+      {{history.totalBudget}}
+    </td>
+    <td>
+      {{history.totalExpenses}}
+    </td>
+    <td>
+      {{history.totalBudget - history.totalExpenses}}
+    </td>
+  </tr>
+  </tbody>
+</table>
